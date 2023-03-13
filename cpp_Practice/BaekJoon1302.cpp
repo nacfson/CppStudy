@@ -29,43 +29,47 @@ int main()
 	{
 		cin >> arr[i];
 	}
+
+
 	for (int i = 0; i < n; i++)
 	{
-		if (i + 1 == n)
-		{	
-			break;
-		}
-		if (arr[i] == arr[i + 1])
+		if (arrMap[arr[i]] > 0)
 		{
 			arrMap[arr[i]]++;
 		}
+		else
+		{
+			arrMap.insert({arr[i],1});
+		}
+	}
+	for (auto& d : arrMap)
+	{
+		cout << d.first << endl;
+		cout << d.second << endl;
 	}
 
-	int count = 0;
-	string value;
-	bool same = false;
-	for (auto& ite : arrMap)
-	{
-		if (count < ite.second)
-		{
-			count = ite.second;
-			value = ite.first;
-			same = false;
-		}
-		else if (count == ite.second)
-		{
-			arr2.push_back(value);
-			arr2.push_back(ite.first);
-			same = true;
-		}
-	}
-	if (same)
-	{
-		cout << Sort(arr2.size(), arr2);
-	}
-	else
-	{
-		cout << value;
-	}
+	//int count = 0;
+	//string value;
+	//bool same = false;
+	//for (auto& ite : arrMap)
+	//{
+	//	if (count < ite.second)
+	//	{
+	//		count = ite.second;
+	//		value = ite.first;
+	//	}
+	//	else if (count == ite.second)
+	//	{
+	//		arr2.push_back(value);
+	//		arr2.push_back(ite.first);
+	//		cout << value << "//" << endl;
+	//		cout << ite.first << "//" << endl;
+	//		value = Sort(arr2.size(), arr2);
+	//		break;
+	//	}
+	//}
+
+	//cout << value;
+
 	return 0;
 }
