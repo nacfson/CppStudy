@@ -33,43 +33,35 @@ int main()
 
 	for (int i = 0; i < n; i++)
 	{
-		if (arrMap[arr[i]] > 0)
+		if (arrMap.find(arr[i]) != arrMap.end())
 		{
 			arrMap[arr[i]]++;
 		}
 		else
 		{
-			arrMap.insert({arr[i],1});
+			arrMap.insert({ arr[i], 1 });
 		}
 	}
-	for (auto d : arrMap)
+
+	
+	int count = 0;
+	string value;
+	bool same = false;
+	for (auto& ite : arrMap)
 	{
-		cout << d.first << endl;
-		cout << d.second << endl;
+		if (count == 0)
+		{
+			count = ite.second;
+			value = ite.first;
+		}
+		if(count < ite.second)
+		{
+			count = ite.second;
+			value = ite.first;
+		}
 	}
 
-	//int count = 0;
-	//string value;
-	//bool same = false;
-	//for (auto& ite : arrMap)
-	//{
-	//	if (count < ite.second)
-	//	{
-	//		count = ite.second;
-	//		value = ite.first;
-	//	}
-	//	else if (count == ite.second)
-	//	{
-	//		arr2.push_back(value);
-	//		arr2.push_back(ite.first);
-	//		cout << value << "//" << endl;
-	//		cout << ite.first << "//" << endl;
-	//		value = Sort(arr2.size(), arr2);
-	//		break;
-	//	}
-	//}
-
-	//cout << value;
+	cout << value;
 
 	return 0;
 }
