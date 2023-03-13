@@ -42,7 +42,7 @@ int main()
 			arrMap.insert({arr[i],1});
 		}
 	}
-	for (auto& d : arrMap)
+	for (auto d : arrMap)
 	{
 		cout << d.first << endl;
 		cout << d.second << endl;
