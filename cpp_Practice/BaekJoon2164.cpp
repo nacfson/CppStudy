@@ -1,26 +1,24 @@
-	#include <iostream>
-	#include <vector>
-	using namespace std;
-
-	void Shuffle(vector<int> &arr,int n)
+#include <iostream>
+#include <vector>
+using namespace std;
+ 
+int main(void)
+{
+	int n;
+	cin >> n;
+	vector<int> arr;
+	for (int i = 0; i < n; i++)
 	{
-		for (int i = 0; i < n; i++)
-		{
-			arr.erase(arr.begin());
-			rotate(arr.begin(), arr.begin() + 1, arr.begin() + n);
-		}
+		arr.push_back(i + 1);
 	}
-	int main(void)
-	{
-		int n;
-		cin >> n;
-		vector<int> arr;
 
-		for (int i = 0; i < n; i++)
-		{
-			arr.push_back(i + 1);
-		}
-		Shuffle(arr,n);
-		cout << arr[0];
-		return 0;
+	for (int i = 0; i < n - 1; i++)
+	{
+		arr.erase(arr.begin());
+		arr.push_back(arr[0]);
+		arr.erase(arr.begin());
 	}
+	cout << arr[0];
+	
+	return 0;
+}
