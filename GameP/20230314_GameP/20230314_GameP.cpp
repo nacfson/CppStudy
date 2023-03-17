@@ -20,7 +20,7 @@ int SleepAmount(int mode)
 		}
 		case NORMAL:
 		{
-			return 700;
+			return 1000;
 			break;
 		}
 		case HARD:
@@ -42,15 +42,16 @@ int main()
 
 	for (int i = 0; i < mode * 5; i++)
 	{
-		randArr[i] = rand();
+		randArr[i] = rand() % 100 + 1;
 	}
 
-	while (count == mode *5)
+	while (count < mode * 5)
 	{
-		cout << randArr[count];
+		cout << randArr[count] << " ";
 		Sleep(SleepAmount(mode));
 		count++;
 	}
+	system("cls");
 
 	for (int i = 0; i < mode * 5; i++)
 	{
