@@ -1,45 +1,23 @@
 #include <iostream>
-#include <queue>
-#include <stack>
-#include <cstdio>
-#include <vector>
-#include <cstring>
 #include <string>
-#include <math.h>
-#include <algorithm>
-#include <map>
-#include <memory.h>
 using namespace std;
 
+int main() {
+    string words[5];
+    for (int i = 0; i < 5; i++) {
+        cin >> words[i];
+    }
 
-int main(void)
-{
-	char arr2[5][15];
-	char word[15];
+    string result = "";
+    for (int i = 0; i < 15; i++) { // 최대 15글자까지만 처리
+        for (int j = 0; j < 5; j++) {
+            if (i < words[j].length()) { // 현재 단어에 i번째 글자가 있는지 확인
+                result += words[j][i]; // i번째 글자를 결과 문자열에 추가
+            }
+        }
+    }
 
+    cout << result << endl;
 
-	for (int i = 0; i < 5; i++)
-	{
-		cin >> word;
-		for (int j = 0; j < 15; j++)
-		{
-			arr2[i][j] = word[j];
-		}
-	}
-
-	for (int i = 0; i < 5; i++)
-	{
-		for (int j = 0; j < 15; j++)
-		{
-			if (arr2[j][i] != ' ')
-			{
-				if (arr2[j][i] != '\0')
-				{
-					cout << arr2[j][i];
-				}
-			}
-		}
-	}
-
-	return 0;
+    return 0;
 }
