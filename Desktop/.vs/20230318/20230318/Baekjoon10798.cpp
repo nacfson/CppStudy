@@ -1,14 +1,27 @@
 #include <iostream>
+#include <queue>
+#include <stack>
+#include <cstdio>
+#include <vector>
+#include <cstring>
+#include <string>
+#include <math.h>
+#include <algorithm>
+#include <map>
+#include <memory.h>
 using namespace std;
+
+
 int main(void)
 {
 	char arr2[5][15];
-	char word[20];
+	char word[15];
+
+
 	for (int i = 0; i < 5; i++)
 	{
 		cin >> word;
-
-		for (int j = 0; j < strlen(word); j++)
+		for (int j = 0; j < 15; j++)
 		{
 			arr2[i][j] = word[j];
 		}
@@ -18,11 +31,15 @@ int main(void)
 	{
 		for (int j = 0; j < 15; j++)
 		{
-			if (arr2[i][j] != ' ')
+			if (arr2[j][i] != ' ')
 			{
-				cout << arr2[i][j];
+				if (arr2[j][i] != '\0')
+				{
+					cout << arr2[j][i];
+				}
 			}
 		}
 	}
+
 	return 0;
 }
