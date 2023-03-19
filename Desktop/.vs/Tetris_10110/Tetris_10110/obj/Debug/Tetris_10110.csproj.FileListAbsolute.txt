@@ -1,0 +1,11 @@
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\bin\Debug\Tetris_10110.exe.config
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\bin\Debug\Tetris_10110.exe
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\bin\Debug\Tetris_10110.pdb
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.csproj.AssemblyReference.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.csproj.SuggestedBindingRedirects.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.Form1.resources
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.Properties.Resources.resources
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.csproj.GenerateResource.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.csproj.CoreCompileInputs.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.exe
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\Tetris_10110\Tetris_10110\obj\Debug\Tetris_10110.pdb

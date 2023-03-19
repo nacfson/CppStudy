@@ -1,0 +1,16 @@
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\bin\Debug\net5.0\dd.exe
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\bin\Debug\net5.0\dd.deps.json
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\bin\Debug\net5.0\dd.runtimeconfig.json
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\bin\Debug\net5.0\dd.runtimeconfig.dev.json
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\bin\Debug\net5.0\dd.dll
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\bin\Debug\net5.0\dd.pdb
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.csproj.AssemblyReference.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.AssemblyInfoInputs.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.AssemblyInfo.cs
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.csproj.CoreCompileInputs.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.dll
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\refint\dd.dll
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.pdb
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\dd.genruntimeconfig.cache
+C:\Users\형주\OneDrive\바탕 화면\MainFolder\c++\.vs\dd\dd\obj\Debug\net5.0\ref\dd.dll
