@@ -1,19 +1,37 @@
 #include <iostream>
 #include <Windows.h>
+#include <vector>
 using namespace std;
 enum class AI_MODE
 {
-	AM_EASY =1,
-	AM_NORMAL
+	NULLMODE = 0,
+	AI_EASY =1,
+	AI_NORMAL
 };
-void RenderNumber(int iNumber[],int iBingo)
+class Agent
 {
-	cout << "===========================================" << endl;
-	cout << "|\t 빙고 게임 \t" << endl;
-	cout << "===========================================" << endl;
-	cout << "빙고줄이 5줄 이상이 되면 게임에서 승리합니다." << endl;
-	cout << "===========================================" << endl;
+public:
+	Agent(string name, AI_MODE mode = AI_MODE::NULLMODE) : name{ name }, ai { mode }{};
+	void Init();
+	int CountBingo();
+	void RenderNumber();
+	void Update(int& input);
+	int SetRandomNum();
+	AI_MODE ai{AI_MODE::NULLMODE};
+	string name{"AI"};
+	int iBingo{ 0 };
+	int iNumber[25] = {};
+	int intMaxArray[25] = {};
+};
 
+
+void Agent::RenderNumber()
+{
+	cout << "=======================" << name <<"====================" << endl;
+	if (ai != AI_MODE::NULLMODE)
+	{
+		cout << "LEVEL: " << (int)ai << endl;
+	}
 	for (int i = 0; i < 5; i++)
 	{
 		for (int j = 0; j < 5; j++)
@@ -25,20 +43,24 @@ void RenderNumber(int iNumber[],int iBingo)
 		}
 		cout << endl;
 	}
+	iBingo = CountBingo();
 	cout << "BingoLine: " << iBingo << endl;
-
 }
 
-void Init(int* iNumber)
+void Agent :: Init()
 {
 	srand((unsigned int)time(NULL));
 	for (int i = 0; i < 25 ; i++)
 	{
 		iNumber[i] = i + 1;
 	}
+	for (int i = 0; i < 25; i++)
+	{
+		intMaxArray[i] = i + 1;
+	}
 
 	int iTemp, idx1, idx2;
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < 100 + (int)ai * 100; i++)
 	{
 		idx1 = rand() % 24 + 1;
 		idx2 = rand() % 24 + 1;
@@ -47,17 +69,8 @@ void Init(int* iNumber)
 		iNumber[idx2] = iTemp;
 	}
 }
-void Update(int* _pNumber, int& input)
-{
-	for (int i = 0; i < 25; i++)
-	{
-		if (input == _pNumber[i])
-		{
-			_pNumber[i] = INT_MAX;
-		}
-	}
-}
-int CountBingo(int *pNumber)
+
+int Agent::CountBingo()
 {
 	int iCheckBingo = 0;
 	int iHorStar = 0, iVerStar = 0,
@@ -68,11 +81,11 @@ int CountBingo(int *pNumber)
 		iHorStar = iVerStar = 0;
 		for (int j = 0; j < 5; j++)
 		{
-			if (pNumber[i*5+j] == INT_MAX)
+			if (iNumber[i*5+j] == INT_MAX)
 			{
 				iHorStar++;
 			}
-			if (pNumber[j * 5 + i] == INT_MAX)
+			if (iNumber[j * 5 + i] == INT_MAX)
 			{
 				iVerStar++;
 			}
@@ -82,17 +95,16 @@ int CountBingo(int *pNumber)
 		if (iVerStar == 5)
 			iCheckBingo++;
 	}
-	
 	for (int i = 0; i < 25; i += 6)
 	{
-		if (pNumber[i] == INT_MAX)
+		if (iNumber[i] == INT_MAX)
 		{
 			iLTStar++;
 		}
 	}
 	for (int i = 0; i < 21; i += 4)
 	{
-		if (pNumber[i] == INT_MAX)
+		if (iNumber[i] == INT_MAX)
 		{
 			iRTStar++;
 		}
@@ -104,23 +116,57 @@ int CountBingo(int *pNumber)
 	
 	return iCheckBingo;
 }
+void Agent::Update(int& input)
+{
+	for (int i = 0; i < 25; i++)
+	{
+		if (input == iNumber[i])
+		{
+			intMaxArray[iNumber[i]] = INT_MAX;
+			iNumber[i] = INT_MAX;
+		}
+	}
+}
+int Agent::SetRandomNum()
+{
+	srand((unsigned int)time(NULL));
+	int ran = rand() % 24 + 1;
+	int arrayValue = intMaxArray[ran];
+	while (arrayValue == INT_MAX)
+	{
+		ran = rand();
+		arrayValue = intMaxArray[ran];
+	}
+	return arrayValue;
+}
 int main(void)
 {
-	int iNumber[25] = {};
-	int iBingo = 0;
+	int aiMode;
 	int input;
+	cin >> aiMode;
+	vector<Agent> players;
 
-	Init(iNumber);
+	Agent player("Player");
+	Agent ai("AI", (AI_MODE)aiMode);
+
+	players.push_back(player);
+	players.push_back(ai);
+
+	players[0].Init();
+	players[1].Init();
+
 	while (1)
 	{
-		system("cls");
-		RenderNumber(iNumber, iBingo);
-		if (iBingo > 4)
+		cout << "===========================================" << endl;
+		cout << "|\t 빙고 게임 \t" << endl;
+		cout << "===========================================" << endl;
+		cout << "빙고줄이 5줄 이상이 되면 게임에서 승리합니다." << endl;
+		cout << "===========================================" << endl;
+		///system("cls");
+		for (int i = 0; i < players.size(); i++)
 		{
-			cout << "게임에서 승리하였습니다.";
-			break;
+			players[i].RenderNumber();
 		}
-		cout << "숫자를 입력하세요.(0: 종료)" << endl;
 		cin >> input;
 		if (input == 0)
 		{
@@ -131,11 +177,28 @@ int main(void)
 		{
 			cout << "잘못입력하였습니다." << endl;
 			continue;
-		}	
-		//Update(), 칸을 채워준다 ,채워진 칸인지 확인.
-		//정답처리
-		Update(iNumber, input);
-		iBingo = CountBingo(iNumber);
+		}
+		player.Update(input);
+		int aiRandValue = ai.SetRandomNum();
+		ai.Update(aiRandValue);
+
+		//if (iBingo > 4)
+		//{
+		//	cout << "게임에서 승리하였습니다.";
+		//	break;
+		//}
+		//cout << "숫자를 입력하세요.(0: 종료)" << endl;
+		//cin >> input;
+		//if (input == 0)
+		//{
+		//	cout << "게임을 종료합니다." << endl;
+		//	break;
+		//}
+		//else if (input < 1 || input > 25)
+		//{
+		//	cout << "잘못입력하였습니다." << endl;
+		//	continue;
+		//}	
 	}
 
 	return 0;
