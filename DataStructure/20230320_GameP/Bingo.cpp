@@ -1,6 +1,5 @@
 #include <iostream>
 #include <Windows.h>
-#include <vector>
 using namespace std;
 enum class AI_MODE
 {
@@ -14,16 +13,46 @@ public:
 	Agent(string name, AI_MODE mode = AI_MODE::NULLMODE) : name{ name }, ai { mode }{};
 	void Init();
 	int CountBingo();
+	void AISystem(Agent &player,AI_MODE mode,int input);
+	void EasyAI(Agent &player, int input);
 	void RenderNumber();
 	void Update(int& input);
 	int SetRandomNum();
+	bool Bingo();
 	AI_MODE ai{AI_MODE::NULLMODE};
 	string name{"AI"};
 	int iBingo{ 0 };
 	int iNumber[25] = {};
 	int intMaxArray[25] = {};
 };
+bool GameCheck(Agent& player, Agent& ai);
+bool RenderGame(Agent& player, Agent& ai);
+int main(void)
+{
+	int aiMode;
+	cout << "AI의 난이도를 설정하세요 (1: Easy, 2: NORMAL, 3: HARD)" << endl;
+	cin >> aiMode;
 
+	Agent player{ "Player" };
+	Agent ai{ "AI",(AI_MODE)aiMode };
+
+	player.Init();
+	ai.Init();
+
+	while (1)
+	{
+		if (RenderGame(player, ai))
+		{
+			//0 입력시 게임 종료
+			break;
+		}
+		if (GameCheck(player, ai))
+		{
+			break;
+		}
+	}
+	return 0;
+}
 
 void Agent::RenderNumber()
 {
@@ -127,79 +156,105 @@ void Agent::Update(int& input)
 		}
 	}
 }
-int Agent::SetRandomNum()
+void Agent::AISystem(Agent &player,AI_MODE mode,int input)
+{
+	switch (mode)
+	{
+	case AI_MODE::AI_EASY:
+		{
+			EasyAI(player,input);
+			break;
+		}
+	}
+
+}
+void Agent::EasyAI(Agent &player,int input)
+{
+	Update(input);
+	int randValue = SetRandomNum();
+	Update(randValue);
+	player.Update(randValue);
+}
+
+int Agent ::SetRandomNum()
 {
 	srand((unsigned int)time(NULL));
 	int ran = rand() % 24 + 1;
 	int arrayValue = intMaxArray[ran];
 	while (arrayValue == INT_MAX)
 	{
-		ran = rand();
+		ran = rand() % 24 + 1;
 		arrayValue = intMaxArray[ran];
 	}
 	return arrayValue;
 }
-int main(void)
+
+bool Agent::Bingo()
 {
-	int aiMode;
-	int input;
-	cin >> aiMode;
-	vector<Agent> players;
-
-	Agent player("Player");
-	Agent ai("AI", (AI_MODE)aiMode);
-
-	players.push_back(player);
-	players.push_back(ai);
-
-	players[0].Init();
-	players[1].Init();
-
-	while (1)
+	if (CountBingo() > 4)
 	{
-		cout << "===========================================" << endl;
-		cout << "|\t 빙고 게임 \t" << endl;
-		cout << "===========================================" << endl;
-		cout << "빙고줄이 5줄 이상이 되면 게임에서 승리합니다." << endl;
-		cout << "===========================================" << endl;
-		///system("cls");
-		for (int i = 0; i < players.size(); i++)
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+bool GameCheck(Agent &player, Agent &ai)
+{
+	if (player.Bingo())
+	{
+		if (ai.Bingo())
 		{
-			players[i].RenderNumber();
+			system("cls");
+			player.RenderNumber();
+			ai.RenderNumber();
+			cout << endl << endl << "비겼습니다";
+			return true;
 		}
-		cin >> input;
-		if (input == 0)
-		{
-			cout << "게임을 종료합니다." << endl;
-			break;
-		}
-		else if (input < 1 || input > 25)
-		{
-			cout << "잘못입력하였습니다." << endl;
-			continue;
-		}
-		player.Update(input);
-		int aiRandValue = ai.SetRandomNum();
-		ai.Update(aiRandValue);
+		system("cls");
+		player.RenderNumber();
+		ai.RenderNumber();
+		cout << endl << endl << "이겼습니다";
+		return true;
+	}
+	if (ai.Bingo())
+	{
+		system("cls");
+		player.RenderNumber();
+		ai.RenderNumber();
+		cout << endl << endl <<"졌습니다";
+		return true;
+	}
+	return false;
+}
+bool RenderGame(Agent &player, Agent &ai)
+{
+	int input;
 
-		//if (iBingo > 4)
-		//{
-		//	cout << "게임에서 승리하였습니다.";
-		//	break;
-		//}
-		//cout << "숫자를 입력하세요.(0: 종료)" << endl;
-		//cin >> input;
-		//if (input == 0)
-		//{
-		//	cout << "게임을 종료합니다." << endl;
-		//	break;
-		//}
-		//else if (input < 1 || input > 25)
-		//{
-		//	cout << "잘못입력하였습니다." << endl;
-		//	continue;
-		//}	
+	cout << "===========================================" << endl;
+	cout << "|\t 빙고 게임 \t" << endl;
+	cout << "===========================================" << endl;
+	cout << "빙고줄이 5줄 이상이 되면 게임에서 승리합니다." << endl;
+	cout << "===========================================" << endl;
+	system("cls");
+	player.RenderNumber();
+	ai.RenderNumber();
+	cin >> input;
+	if (input == 0)
+	{
+		cout << "게임을 종료합니다." << endl;
+		return true;
 	}
 
-	return 0;
+	else if (input < 1 || input > 25)
+	{
+		cout << "잘못입력하였습니다." << endl;
+		return false;
+	}
+	player.Update(input);
+	ai.AISystem(player,ai.ai,input);
+
+	return false;
 }
+
