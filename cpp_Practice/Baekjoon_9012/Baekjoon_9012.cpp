@@ -46,23 +46,9 @@ int main(void)
 			}
 			else
 			{
-				int saveValueArray[50];
-				int index = 0;
-				for (int k = 0; k < vpsArray[i].size(); k++)
-				{
-					if (vpsArray[i][k] == ')')
-					{
-						saveValueArray[index] = k;
-						index++;z
-					}
-				}
-				for (int z = 0; z < index; i++)
-				{
-
-				}
 				cout << "YES" << endl;
+				
 			}
-
 		}
 	}
 	return 0;
