@@ -1,56 +1,64 @@
 ﻿#include <iostream>
+#include <vector>
 using namespace std;
+
 
 int main(void)
 {
 	int size;
 	cin >> size;
-	
 
-	int rVpsCnt {0};
-	int lVpsCnt{ 0 };
+	vector<char> vpsVector;
+	vector<string> valueVector;
 	
-	string *vpsArray = new string[size];
-
 	for (int i = 0; i < size; i++)
 	{
-		string value{NULL};
+		string value;
 		cin >> value;
-		vpsArray[i] = value;
+		valueVector.push_back(value);
 	}
-
-	for (int i = 0; i < size; i++)
+	//cout << valueVector.size();
+	for (int i = 0; i < valueVector.size(); i++)
 	{
-		lVpsCnt = 0;
-		rVpsCnt = 0;
-		for (int j = 0; j < vpsArray[i].size(); j++)
+		bool canCheck = true;
+		for (int j = 0; j < valueVector[i].size(); j++)
 		{
-			if (vpsArray[i][j] == '(')
+			if (!canCheck) continue;
+			if (valueVector[i][j] == '(')
 			{
-				lVpsCnt++;
+				vpsVector.push_back('(');
 			}
-			if(vpsArray[i][j] == ')')
+			else if (valueVector[i][j] == ')')
 			{
-				rVpsCnt++;
+				if (!vpsVector.empty())
+				{
+					vpsVector.pop_back();
+				}
+				else
+				{
+					//cout << "valueVector: " << valueVector[i][j];
+					cout << "NO" << endl;
+					canCheck = false;
+					vpsVector.clear();
+				}
 			}
 		}
-		if (lVpsCnt != rVpsCnt)
+		if (canCheck)
 		{
-			cout << "NO" << endl;
-		}
-		else
-		{
-			if (vpsArray[i][vpsArray[i].size()] == '(')
+			if (vpsVector.empty())
 			{
-				cout << "NO" << endl;
+				cout << "YES" << endl;
+				vpsVector.clear();
 			}
 			else
 			{
-				cout << "YES" << endl;
-				
+				cout << "NO" << endl;
+				vpsVector.clear();
 			}
 		}
+
 	}
+	
 	return 0;
 
 }
