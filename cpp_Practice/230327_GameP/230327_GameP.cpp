@@ -1,9 +1,11 @@
-﻿#include <iostream>
-#include "Add.h";
-using namespace std;
-
-int main()
-{
-	cout << Add(1, 2) << endl;
-}
-
+﻿//#include <iostream>
+//#include "Header/Add.h";
+//#include "numMul.h"
+//using namespace std;
+//
+//int main()
+//{
+//	cout << AddMul() << endl;
+//}
+//
+//

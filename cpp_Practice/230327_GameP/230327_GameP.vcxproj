@@ -141,9 +141,11 @@
   <ItemGroup>
     <ClCompile Include="230327_GameP.cpp" />
     <ClCompile Include="Add.cpp" />
+    <ClCompile Include="소스.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Add.h" />
+    <ClInclude Include="numMul.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
