@@ -1,0 +1,2 @@
+﻿  MyPlus.cpp
+D:\C++\CppStudy\DataStructure\20230404_DataStructure\MyPlus.cpp(24,3): error C2676: 이항 '++': 'Counter'이(가) 이 연산자를 정의하지 않거나 미리 정의된 연산자에 허용되는 형식으로의 변환을 정의하지 않습니다.

@@ -1,0 +1,9 @@
+﻿  console.cpp
+D:\C++\CppStudy\GameP\bombman\console.cpp(14,16): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+D:\C++\CppStudy\GameP\bombman\console.cpp(14,18): warning C4838: 'int'에서 'SHORT'(으)로의 변환에는 축소 변환이 필요합니다.
+  main.cpp
+  코드를 생성하고 있습니다...
+main.obj : error LNK2019: "void __cdecl SetColor(int,int)" (?SetColor@@YAXHH@Z)main 함수에서 참조되는 확인할 수 없는 외부 기호
+    정의되었으며 잠재적으로 일치할 수 있는 기호에 대한 힌트:
+      "void __cdecl SetColor(enum COLOR,enum COLOR)" (?SetColor@@YAXW4COLOR@@0@Z)
+D:\C++\CppStudy\cpp_Practice\230327_GameP\x64\Debug\bombman.exe : fatal error LNK1120: 1개의 확인할 수 없는 외부 참조입니다.

@@ -120,6 +120,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>winmm.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -141,11 +142,20 @@
   <ItemGroup>
     <ClCompile Include="230327_GameP.cpp" />
     <ClCompile Include="Add.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="소스.cpp" />
+    <ClCompile Include="소스1.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Add.h" />
     <ClInclude Include="numMul.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="230327_GameP.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Media Include="C:\Users\user\Downloads\powerUp.wav" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
