@@ -11,8 +11,8 @@ int main(void)
 	//PlaySound(TEXT("laserShoot.wav"), NULL,SND_FILENAME);
 	//PlaySound(TEXT("SystemDefault"), NULL, SND_ASYNC);
 	//PlaySound(MAKEINTRESOURCE(IDR_WAVE1), NULL, SND_RESOURCE);
-	string sound[8] = {"도(1)","레(2)","미(3)" ,"파(4)" ,"솔(5)" ,"라(6)" ,"시(7)" ,"도(8)" };
-	float soundValueArr[8] = { 523.25,587.33,659.26,698.46,783.99,880,987.77,1046.50 };
+	const string sound[8] = {"도(1)","레(2)","미(3)" ,"파(4)" ,"솔(5)" ,"라(6)" ,"시(7)" ,"도(8)" };
+	const float soundValueArr[8] = { 523.25,587.33,659.26,698.46,783.99,880,987.77,1046.50 };
 
 	srand((unsigned int)time(NULL));
 	while (true)

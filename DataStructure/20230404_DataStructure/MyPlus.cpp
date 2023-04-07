@@ -12,7 +12,11 @@ public :
 
 	Counter& operator++()
 	{
-		this->value += 1;
+		this->value++;
+		return *this;
+	}
+	Counter& operator++(int) {
+		this->value++;
 		return *this;
 	}
 
