@@ -6,6 +6,9 @@ enum class COLOR
 	,LIGHT_GREEN, MINT, LIGHT_RED, LIGHT_VIOLET, LIGHT_YELLOW, WHITE
 };
 void FullScreen();
-void Gotoxy(int x, int y);
+BOOL Gotoxy(int x, int y);
+
 void ConsoleCursor(bool value, DWORD dWord);
 void SetColor(COLOR, COLOR);
+int GetColor();
+int GetbgColor();

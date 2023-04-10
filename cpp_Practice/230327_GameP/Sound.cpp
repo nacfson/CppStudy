@@ -64,7 +64,6 @@ int main(void)
 		cin >> end; 
 		if (end == 0)
 			break;
-
 	}
 	
 
