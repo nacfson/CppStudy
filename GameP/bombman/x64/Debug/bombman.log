@@ -1,14 +1,2 @@
-﻿  bombman.cpp
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(13,18): warning C4129: ' ': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(13,18): warning C4129: '|': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(14,18): warning C4129: ' ': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(14,18): warning C4129: '/': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(15,18): warning C4129: ' ': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(15,18): warning C4129: '|': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(16,18): warning C4129: ' ': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(16,18): warning C4129: '/': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(16,18): warning C4129: '_': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(17,18): warning C4129: '_': 문자 이스케이프 시퀀스를 인식할 수 없습니다.
-  main.cpp
-  코드를 생성하고 있습니다...
-  bombman.vcxproj -> D:\C++\CppStudy\cpp_Practice\230327_GameP\x64\Debug\bombman.exe
+﻿  main.cpp
+C:\Program Files (x86)\Windows Kits\10\Include\10.0.19041.0\um\winnt.h(173,1): fatal error C1189: #error:  "No Target Architecture"
