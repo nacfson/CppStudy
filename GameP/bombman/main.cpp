@@ -39,7 +39,7 @@ int main(void) {
 
 	while (true) {
 		Gotoxy(0, 0);
-		Update(maze, &player,vecBoom,boomEffect);
+		Update(maze, &player,vecBoom,boomEffect );
 		Render(maze, &player,boomEffect);
 
 		if (player.pos.x == endPos.x && player.pos.y == endPos.y) {

@@ -11,6 +11,7 @@ typedef struct _tagpos {
 	int x;
 	int y;
 }POS, *PPOS;
+
 //ÇÃ·¹ÀÌ¾î
 typedef struct _tagplayer {
 	POS pos;
@@ -21,20 +22,22 @@ typedef struct _tagplayer {
 	bool isPush;
 	bool isPushOnOff;
 }PLAYER, *PPLAYER;
+
 //ÆøÅº
 typedef struct _tagboom {
 	int x;
 	int y;
 	int life;
-
+	bool die;
 }BOOM, *PBOOM;
 
 
 void AsciiArt();
 void Init(char maze[VERTICAL][HORIZON], PPLAYER player,PPOS startPos,PPOS endPos);
-void Update(char maze[VERTICAL][HORIZON],PPLAYER player,vector<BOOM> vecBoom,vector<POS> boomEffect);
-void Render(char maze[VERTICAL][HORIZON],PPLAYER player,vector<POS> boomEffect);
+void Update(char maze[VERTICAL][HORIZON],PPLAYER player,std::vector<BOOM>& vecBoom, std::vector<POS>& boomEffect);
+void Render(char maze[VERTICAL][HORIZON],PPLAYER player, std::vector<POS>& boomEffect);
+void BombCreate(PPLAYER player, char maze[VERTICAL][HORIZON], vector<BOOM>& vecBomb);
 
 enum class MAPTYPE {
-	WALL = '0', ROAD ='1', START ='2', END= '3'
+	WALL = '0', ROAD = '1', START = '2', END = '3',	WATERBOMB = 'b', TWINKLE = 'p', POWER = '4', SLIME = '5', PUSH = '6',
 };
