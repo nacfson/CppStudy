@@ -40,7 +40,7 @@ void Init(char maze[VERTICAL][HORIZON], PPLAYER player, PPOS startPos, PPOS endP
     endPos->x = 19;
     endPos->y = 13;
 
-    PLAYER setPlayer = {*startPos,1,0,false,false,false};
+    PLAYER setPlayer = { *startPos,{},1,0,false,false,false };
 
 
     *player = setPlayer;
@@ -84,8 +84,39 @@ void Update(char maze[VERTICAL][HORIZON], PPLAYER player, vector<BOOM>& vecBoom,
     if (maze[player->newPos.y][player->newPos.x] != '0') {
         player->pos = player->newPos;
     }
+    else if (maze[player->newPos.y][player->newPos.x] == (char)MAPTYPE::WALL) {
+        POS diffPos = { player->newPos.x - player->pos.x,player->newPos.y - player->pos.y };
+        POS nextPos = { player->pos.x + diffPos.x * 1,player->pos.y + diffPos.y * 1 };
+        POS doublePos = { player->pos.x + diffPos.x * 2,player->pos.y + diffPos.y * 2 };
+    }
+
+
+    if (GetItem(maze[player->pos.y][player->pos.x], player)) {
+        maze[player->pos.y][player->pos.x] = (char)MAPTYPE::ROAD;
+    }
+
     if (GetAsyncKeyState(VK_SPACE) & 0x8000) {
-        BombCreate(player, maze);
+        BombCreate(player, maze,vecBoom);
+    }
+    int bombCount = player->bombCount;
+    for (int i = 0; i < bombCount; i++) {
+        BOOM& boom = vecBoom[i];
+        boom.life--;
+        if (boom.life % 2 == 0) {
+            maze[boom.y][boom.x] = (char)MAPTYPE::WATERBOMB;
+        }
+        else {
+            maze[boom.y][boom.x] = (char)MAPTYPE::TWINKLE;
+        }
+        boom.life % 10 >= 5 ? maze[boom.y][boom.x] : (char)MAPTYPE::WATERBOMB;
+        boom.life % 2 == 0 ? maze[boom.y][boom.x] : (char)MAPTYPE::TWINKLE;
+        if (boom.life <= 0) {
+            boom.die = true;
+            player->bombCount--;
+            //확률상 아이템 나오기
+            //벡터에서 지우기
+            Fire( maze, player,{ boom.x,boom.y }, boomEffect);
+        }
     }
     if (GetAsyncKeyState('E') & 0x8000) {
         if (player->isPush) {
@@ -150,8 +181,6 @@ void Render(char maze[VERTICAL][HORIZON], PPLAYER player, std::vector<POS>& boom
     else {
         cout << "슬라임 능력: OFF" << endl;
     }
-
-
 }
 
 void BombCreate(PPLAYER player, char maze[VERTICAL][HORIZON], std::vector<BOOM>& vecBomb){
@@ -164,10 +193,92 @@ void BombCreate(PPLAYER player, char maze[VERTICAL][HORIZON], std::vector<BOOM>&
         maze[player->pos.y][player->pos.x] = 'b';
         player->bombCount += 1;
 
-        vecBomb.push_back({ player->pos.x, player->pos.y, 50, false
-            });
+        vecBomb.push_back({ player->pos.x, player->pos.y, 50, false});
+    }
+}
 
+void Fire(char maze[VERTICAL][HORIZON], PPLAYER player, POS boomPos, std::vector<POS> boomEffect){
+    maze[boomPos.y][boomPos.x] = (char)MAPTYPE::ROAD;
+    //현재 포지션을 길로 바꿈;
+    int scopeXMin = boomPos.x - player->bombPower;
+    int scopeXMax = boomPos.x + player->bombPower;
+    int scopeYMin = boomPos.y - player->bombPower;
+    int scopeYMax = boomPos.y + player->bombPower;
+
+    if ((player -> pos.x >= scopeXMin && player->pos.x <= scopeXMax && player->pos.y == boomPos.y )||
+        (player->pos.y >= scopeYMin && player->pos.y <= scopeXMax && player->pos.x == boomPos.x)) {
+        player->pos = { 0,0 };
+
+        static vector<POS> vecEffect;
+        for (int i = scopeXMin; i <= scopeXMax; i++) {
+            vecEffect.push_back({std::clamp( i,0,HORIZON - 2),boomPos.y });
+        }
+        for (int i = scopeYMin; i <= scopeYMax; i++) {
+            vecEffect.push_back({ boomPos.x, std::clamp(i,0,VERTICAL - 1) });
+        }
+        for (const auto& target : vecEffect) {
+            boomEffect.push_back(target);
+            if (maze[target.y][target.x] == (char)MAPTYPE::WALL) {
+                //50 % 확률로 아이템이 나옴
+                //? : ? : ? 물풍선, 푸시, 슬라임
+                srand((unsigned int)time(NULL));
+                int getitemValue = rand() % 10001 / 100.f;
+
+                if (getitemValue <= 50.f) {
+                    getitemValue = rand() % 10001 / 100.f;
+                    if (getitemValue <= 50.f) {
+                        maze[target.y][target.x] = (char)MAPTYPE::POWER;
+                        //물풍선
+                    }
+                    else if (getitemValue <= 80.f) {             
+                        maze[target.y][target.x] = (char)MAPTYPE::PUSH;
+
+                        //푸시
+                    }
+                    else {
+                        maze[target.y][target.x] = (char)MAPTYPE::SLIME;
+                        //슬라임
+                    }
+                }
+                else {
+                    maze[target.y][target.x] = (char)MAPTYPE::ROAD;
+                }
+            }
+        }
     }
 
+    //파워만큼 상하좌우를 길로 바꿈
+    //아이템
+    //(0,0) 으로 강제이동                
+}
 
+void Event(std::vector<BOOM>& _vecBoom){
+    //폭탄 지우기
+    vector<BOOM>::iterator iter;
+    for (iter = _vecBoom.begin(); iter != _vecBoom.end();) {
+        if (iter->die) {
+            iter = _vecBoom.erase(iter);
+        }
+        else {
+            iter++;
+        }
+    }
+}
+
+bool GetItem(char item, PPLAYER player){
+    if (item == (char)MAPTYPE::SLIME) {
+        //sound
+        ++player->bombPower;
+        return true;
+    }
+    else if (item == (char)MAPTYPE::SLIME) {
+        player->isGhost = true;
+        return true;
+    }
+    else if (item == (char)MAPTYPE::PUSH) {
+        player->isPush = true;
+        player->isPushOnOff = true;
+        return true;
+    }
+    return false;
 }
