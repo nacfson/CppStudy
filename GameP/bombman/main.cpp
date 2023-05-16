@@ -41,13 +41,27 @@ int main(void) {
 		Gotoxy(0, 0);
 		Update(maze, &player,vecBoom,boomEffect );
 		Render(maze, &player,boomEffect);
+		float oldTime = clock();
+		float curTime = 0;
 
 		if (player.pos.x == endPos.x && player.pos.y == endPos.y) {
 			PlaySound(TEXT("random.wav"),0,SND_FILENAME | SND_ASYNC);
 			Sleep(1000);
 			break;
 		}
+		while (true) {
+			curTime = clock();
+			// clock() => ms 단위로 시간을 측정.
+			//사람의 눈이 30정도를 부드럽게 인식.
+			//
+			if (curTime - oldTime >= 33) {
+				oldTime = curTime;
+				break;
+			}
+		}
 	}
+
+
 
 	return 0;
 }

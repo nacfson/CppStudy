@@ -1,6 +1,4 @@
 ﻿  bombman.cpp
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(222,34): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-D:\C++\CppStudy\GameP\bombman\bombman.cpp(225,51): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-  main.cpp
-  코드를 생성하고 있습니다...
+D:\C++\CppStudy\GameP\bombman\bombman.cpp(250,34): warning C4244: '초기화 중': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+D:\C++\CppStudy\GameP\bombman\bombman.cpp(253,51): warning C4244: '=': 'float'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
   bombman.vcxproj -> D:\C++\CppStudy\cpp_Practice\230327_GameP\x64\Debug\bombman.exe

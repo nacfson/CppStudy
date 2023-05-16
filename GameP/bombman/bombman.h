@@ -38,7 +38,7 @@ void Update(char maze[VERTICAL][HORIZON],PPLAYER player,std::vector<BOOM>& vecBo
 void Render(char maze[VERTICAL][HORIZON],PPLAYER player, std::vector<POS>& boomEffect);
 void BombCreate(PPLAYER player, char maze[VERTICAL][HORIZON], std::vector<BOOM>& vecBomb);
 void Fire(char maze[VERTICAL][HORIZON],PPLAYER player, POS boomPos,std::vector<POS> boomEffect);
-void Event(std::vector<BOOM>& _vecBoom);
+void Event(std::vector<BOOM>& _vecBoom, std::vector<POS>& boomEffect);
 bool GetItem(char item,PPLAYER player);               
 
 enum class MAPTYPE {

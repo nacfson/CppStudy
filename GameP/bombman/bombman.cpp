@@ -84,12 +84,27 @@ void Update(char maze[VERTICAL][HORIZON], PPLAYER player, vector<BOOM>& vecBoom,
     if (maze[player->newPos.y][player->newPos.x] != '0') {
         player->pos = player->newPos;
     }
-    else if (maze[player->newPos.y][player->newPos.x] == (char)MAPTYPE::WALL) {
+    else if (maze[player->newPos.y][player->newPos.x] == (char)MAPTYPE::WALL && player->isPushOnOff && player->isPush) {
         POS diffPos = { player->newPos.x - player->pos.x,player->newPos.y - player->pos.y };
         POS nextPos = { player->pos.x + diffPos.x * 1,player->pos.y + diffPos.y * 1 };
         POS doublePos = { player->pos.x + diffPos.x * 2,player->pos.y + diffPos.y * 2 };
-    }
 
+        //Push is On && nextnext is wall && isGhost;
+        if (player->isGhost && maze[doublePos.y][doublePos.x] == (char)MAPTYPE::WALL) {
+            player->pos = player->newPos;
+        }
+        //Push is on nextnext is road  => 슬라임 고려 필요없이 갱신
+
+        else if (player->isGhost && maze[doublePos.y][doublePos.x] == (char)MAPTYPE::ROAD) {
+            maze[doublePos.y][doublePos.x] = (char)MAPTYPE::WALL;
+            maze[nextPos.y][nextPos.x] = (char)MAPTYPE::ROAD;
+            player->pos = player->newPos;
+        }
+    }
+    else if (player->isGhost) {
+        player->pos = player->newPos;
+    }
+    
 
     if (GetItem(maze[player->pos.y][player->pos.x], player)) {
         maze[player->pos.y][player->pos.x] = (char)MAPTYPE::ROAD;
@@ -129,6 +144,19 @@ void Update(char maze[VERTICAL][HORIZON], PPLAYER player, vector<BOOM>& vecBoom,
 void Render(char maze[VERTICAL][HORIZON], PPLAYER player, std::vector<POS>& boomEffect){
     for (int i = 0; i < VERTICAL; i++) {
         for (int j = 0; j < HORIZON; j++) {
+            bool drawed = false;
+            for (int k = 0; k < boomEffect.size(); k++) {
+                boomEffect[0].x;
+                boomEffect[0].y;
+                if (boomEffect[k].x == j && boomEffect[k].y == i) {
+                    SetColor(COLOR::LIGHT_BLUE, COLOR::BLACK);
+                    cout << "+";
+                    drawed = true;
+                    break;
+                }
+            }
+
+            if (drawed) continue;
             if (player-> pos.x == j && player->pos.y == i) {
                 cout << "?";
             }
@@ -232,7 +260,6 @@ void Fire(char maze[VERTICAL][HORIZON], PPLAYER player, POS boomPos, std::vector
                     }
                     else if (getitemValue <= 80.f) {             
                         maze[target.y][target.x] = (char)MAPTYPE::PUSH;
-
                         //푸시
                     }
                     else {
@@ -252,7 +279,7 @@ void Fire(char maze[VERTICAL][HORIZON], PPLAYER player, POS boomPos, std::vector
     //(0,0) 으로 강제이동                
 }
 
-void Event(std::vector<BOOM>& _vecBoom){
+void Event(std::vector<BOOM>& _vecBoom,std::vector<POS> boomEffect){
     //폭탄 지우기
     vector<BOOM>::iterator iter;
     for (iter = _vecBoom.begin(); iter != _vecBoom.end();) {
@@ -263,6 +290,12 @@ void Event(std::vector<BOOM>& _vecBoom){
             iter++;
         }
     }
+
+    vector<POS>::iterator effectIter;
+    for (effectIter = boomEffect.begin(); effectIter != boomEffect.end();) {
+        effectIter = boomEffect.erase(effectIter);
+    }
+
 }
 
 bool GetItem(char item, PPLAYER player){
