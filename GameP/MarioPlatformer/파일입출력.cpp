@@ -26,6 +26,7 @@ int main() {
 	readFile.open("test2.txt");
 
 	char buf[1024];
+	
 	while (!readFile.eof()) {
 		readFile.getline(buf, 12);
 		cout << buf << endl;
