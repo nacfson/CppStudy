@@ -31,7 +31,6 @@ typedef struct _tagboom {
 	bool die;
 }BOOM, *PBOOM;
 
-
 void AsciiArt();
 void Init(char maze[VERTICAL][HORIZON], PPLAYER player,PPOS startPos,PPOS endPos);
 void Update(char maze[VERTICAL][HORIZON],PPLAYER player,std::vector<BOOM>& vecBoom, std::vector<POS>& boomEffect);
