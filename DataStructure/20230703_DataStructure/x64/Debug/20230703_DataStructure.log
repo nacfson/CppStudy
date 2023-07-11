@@ -1,0 +1,4 @@
+﻿  subtraction.cpp
+D:\C++\CppStudy\DataStructure\20230703_DataStructure\subtraction.cpp(7,13): warning C4101: 'j' :참조되지 않은 지역 변수입니다.
+D:\C++\CppStudy\DataStructure\20230703_DataStructure\subtraction.cpp(7,11): warning C4101: 'i' :참조되지 않은 지역 변수입니다.
+  20230703_DataStructure.vcxproj -> D:\C++\CppStudy\DataStructure\20230703_DataStructure\x64\Debug\20230703_DataStructure.exe

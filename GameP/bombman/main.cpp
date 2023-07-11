@@ -4,7 +4,7 @@
 #include <mmsystem.h>
 #include "bombman.h"
 #include "StartScene.h"
-#include "console.h"
+#include ".h"
 #pragma comment(lib, "winmm.lib")
 using namespace std;
 
@@ -49,6 +49,7 @@ int main(void) {
 			Sleep(1000);
 			break;
 		}
+
 		while (true) {
 			curTime = clock();
 			// clock() => ms 단위로 시간을 측정.
@@ -60,8 +61,5 @@ int main(void) {
 			}
 		}
 	}
-
-
-
 	return 0;
 }

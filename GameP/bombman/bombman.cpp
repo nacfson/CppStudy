@@ -189,7 +189,7 @@ void Render(char maze[VERTICAL][HORIZON], PPLAYER player, std::vector<POS>& boom
             else if (maze[i][j] == (char)MAPTYPE::PUSH) {
                 cout << "▒";
             }
-            SetColor(COLOR::WHITE, COLOR::BLACK);
+            Sconti
             
         }
         cout << endl;
