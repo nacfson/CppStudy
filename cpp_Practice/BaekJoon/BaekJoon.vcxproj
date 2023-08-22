@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -142,6 +142,8 @@
     <ClCompile Include="BaekJoon10828.cpp" />
     <ClCompile Include="BaekJoon1182.cpp" />
     <ClCompile Include="BaekJoon12865.cpp" />
+    <ClCompile Include="Baekjoon13458.cpp" />
+    <ClCompile Include="Baekjoon14501.cpp" />
     <ClCompile Include="Baekjoon1920.cpp" />
     <ClCompile Include="Baekjoon2485.cpp" />
     <ClCompile Include="BaekJoon9935.cpp" />
