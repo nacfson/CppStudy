@@ -6,11 +6,13 @@
            
 
 #define MAX_LOADSTRING 100
-#define PROGRAM_TITLE L"MY GAME"
+#define PROGRAM_TITLE L"형주의 윈도우"
+#define WINSIZEX = 1280
+#define WINSIZEY = 720
 
 // 전역 변수:
 HINSTANCE hInst;                                // 현재 인스턴스입니다.
-WCHAR szTitle[MAX_LOADSTRING] = PROGRAM_TITLE;                  // 제목 표시줄 텍스트입니다.
+WCHAR szTitle[MAX_LOADSTRING] = PROGRAM_TITLE;  // 제목 표시줄 텍스트입니다.
 WCHAR szWindowClass[MAX_LOADSTRING];            // 기본 창 클래스 이름입니다.
 
 // 이 코드 모듈에 포함된 함수의 선언을 전달합니다:
@@ -59,7 +61,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 }
 
 
-
 //
 //  함수: MyRegisterClass()
 //
@@ -71,15 +72,16 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
-    wcex.style          = CS_HREDRAW | CS_VREDRAW;
+    wcex.style          = CS_HREDRAW | CS_VREDRAW | CS_DBLCLKS;
+    //wcex.style          = 1280 | 720;
     wcex.lpfnWndProc    = WndProc;
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
     wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MY20230821GAMEP));
-    wcex.hCursor        = LoadCursor(nullptr, IDC_ARROW);
-    //wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.hbrBackground = (HBRUSH)(GetStockObject(LTGRAY_BRUSH));
+    wcex.hCursor        = LoadCursor(nullptr, IDC_CROSS);
+    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 3);
+    //wcex.hbrBackground = (HBRUSH)(GetStockObject(LTGRAY_BRUSH));
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_MY20230821GAMEP);
     //wcex.lpszMenuName = nullptr;
     wcex.lpszClassName  = szWindowClass;
@@ -102,9 +104,14 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
+   int xResolution = GetSystemMetrics(SM_CXSCREEN);
+   int yResolution = GetSystemMetrics(SM_CYSCREEN);
 
-   HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+   int winPosX = xResolution / 2 - 1280 / 2;
+   int winPosY = yResolution / 2 - 720 / 2;
+
+   HWND hWnd = CreateWindowW(szWindowClass, szTitle,WS_OVERLAPPEDWINDOW | WS_HSCROLL,
+      winPosX, winPosY, 1280, 720, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -130,7 +137,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     static UINT iCount = 0;
-    static char arr[10];
+    static char arr[100];
 
     switch (message)
     {
@@ -160,18 +167,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             //사각형 그리기
 
             Rectangle(hdc,10,10,110,110);
+            Ellipse(hdc, 50, 50, 150, 150);
             EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:
         //MessageBox(hWnd, L"X버튼이 눌렸습니다.", L"WM_DESTROY", MB_OK);
         _itoa_s(iCount,arr,10);
-        MessageBoxA(hWnd,arr,"WM_DESTROY",MB_OK);
+        //MessageBoxA(hWnd,arr,"WM_DESTROY",MB_OK);
         PostQuitMessage(0);
+        break;
+    case WM_LBUTTONDBLCLK:
+        MessageBox(hWnd,L"왼쪽 마우스 더블클릭",L"WM_DESTROY", MB_OKCANCEL | MB_ICONSTOP);
         break;
     default:
         break;
     }
+
     iCount++;
         return DefWindowProc(hWnd, message, wParam, lParam);
     //return 0;
