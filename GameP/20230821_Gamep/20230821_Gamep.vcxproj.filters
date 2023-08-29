@@ -45,5 +45,8 @@
     <Image Include="20230821_Gamep.ico">
       <Filter>리소스 파일</Filter>
     </Image>
+    <Image Include="game.ico">
+      <Filter>리소스 파일</Filter>
+    </Image>
   </ItemGroup>
 </Project>

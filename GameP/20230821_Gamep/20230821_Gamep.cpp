@@ -3,7 +3,10 @@
 
 #include "framework.h"
 #include "20230821_Gamep.h"
-           
+#include <string>
+#include <time.h>
+using namespace std;
+
 
 #define MAX_LOADSTRING 100
 #define PROGRAM_TITLE L"형주의 윈도우"
@@ -36,6 +39,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDC_MY20230821GAMEP, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance);
 
+    srand((unsigned int)time(nullptr));
 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
@@ -78,14 +82,14 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
     wcex.cbClsExtra     = 0;
     wcex.cbWndExtra     = 0;
     wcex.hInstance      = hInstance;
-    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MY20230821GAMEP));
+    wcex.hIcon          = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
     wcex.hCursor        = LoadCursor(nullptr, IDC_CROSS);
-    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 3);
+    wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);
     //wcex.hbrBackground = (HBRUSH)(GetStockObject(LTGRAY_BRUSH));
     wcex.lpszMenuName   = MAKEINTRESOURCEW(IDC_MY20230821GAMEP);
     //wcex.lpszMenuName = nullptr;
     wcex.lpszClassName  = szWindowClass;
-    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
+    wcex.hIconSm        = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_ICON1));
 
     return RegisterClassExW(&wcex);
 }
@@ -110,9 +114,15 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    int winPosX = xResolution / 2 - 1280 / 2;
    int winPosY = yResolution / 2 - 720 / 2;
 
+   RECT rect = { winPosX,winPosY,winPosX + 1280,winPosY + 720 };
+
+   AdjustWindowRect(&rect,WS_OVERLAPPEDWINDOW | WS_HSCROLL,true);
+
+
    HWND hWnd = CreateWindowW(szWindowClass, szTitle,WS_OVERLAPPEDWINDOW | WS_HSCROLL,
       winPosX, winPosY, 1280, 720, nullptr, nullptr, hInstance, nullptr);
 
+   MoveWindow(hWnd, winPosX, winPosY, rect.right-rect.left, rect.bottom - rect.top,true);
    if (!hWnd)
    {
       return FALSE;
@@ -158,17 +168,57 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             }
         }
         break;
+        //무효화 영역 발생 함수
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-            // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            for (int i = 0; i < 1000; i++) {
+                int x = rand() % 100;
+                int y = rand() % 100;
 
-            //사각형 그리기
+                SetPixel(hdc, x,y,RGB(255,0,0));
+            }
 
-            Rectangle(hdc,10,10,110,110);
-            Ellipse(hdc, 50, 50, 150, 150);
-            EndPaint(hWnd, &ps);
+            for (int i = 0; i < 16; i++) {
+                MoveToEx(hdc, i * 1280 / 16, 0, nullptr); //시작 지점
+                LineTo(hdc, i* 1280 /16, 720);
+            }                           
+            for (int i = 0; i < 9; i++) {
+                MoveToEx(hdc, i, i * 720 /9, nullptr); //시작 지점
+                LineTo(hdc, 1280, i * 720 /9);
+            }
+            
+            int targetCnt = 25;
+            
+            for (int i = 0; i < targetCnt; ++i) {
+                int left = 100 + (70 * i % 5);
+                int top = 100 + (70 * i / 5) ;
+
+                if (i / 5 % 2 == 0){
+                    Rectangle(hdc, left, top,left + 50, top + 50);
+                }
+                else {
+                    Ellipse(hdc,left,top,left + 50,top+ 50);
+                }
+            }
+
+            //// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
+            //wstring str = L"겜프 2학기 시작";
+
+            //TextOut(hdc,10,10,str.c_str(), str.length());
+
+            //RECT rect = { 50,50,80,80};
+            //Rectangle(hdc, rect.left,rect.top,rect.right,rect.bottom);
+            //DrawText(hdc,str.c_str(),str.length(),&rect,DT_RIGHT | DT_CENTER);
+
+            //
+
+            ////사각형 그리기
+
+            ////Rectangle(hdc,10,10,110,110);
+            ////Ellipse(hdc, 50, 50, 150, 150);
+            //EndPaint(hWnd, &ps);
         }
         break;
     case WM_DESTROY:
