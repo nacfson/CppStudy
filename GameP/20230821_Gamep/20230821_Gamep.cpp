@@ -148,9 +148,15 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
     static UINT iCount = 0;
     static char arr[100];
+    static wchar_t wstr[100];
+    static int  count;
+    HDC hdc;
 
     switch (message)
     {
+    case WM_CREATE:
+        count = 0;
+        break;
     case WM_COMMAND:
         {
             int wmId = LOWORD(wParam);
@@ -172,28 +178,34 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_PAINT:
         {
             PAINTSTRUCT ps;
-            HDC hdc = BeginPaint(hWnd, &ps);
-            for (int i = 0; i < 1000; i++) {
-                int x = rand() % 100;
-                int y = rand() % 100;
+            hdc = BeginPaint(hWnd, &ps);
+            HPEN hPen = CreatePen(PS_DASHDOT,3,RGB(0,0,255));
+            HBRUSH hBrush = CreateHatchBrush(HS_BDIAGONAL,RGB(0, 255, 0));
+            HPEN hDefaultPen = (HPEN)SelectObject(hdc, hPen); 
+            TextOut(hdc, 10, 10, wstr, wcslen(wstr));
 
-                SetPixel(hdc, x,y,RGB(255,0,0));
-            }
+            SelectObject(hdc, hBrush);
+            DeleteObject(hPen);
 
-            for (int i = 0; i < 16; i++) {
-                MoveToEx(hdc, i * 1280 / 16, 0, nullptr); //시작 지점
-                LineTo(hdc, i* 1280 /16, 720);
-            }                           
-            for (int i = 0; i < 9; i++) {
-                MoveToEx(hdc, i, i * 720 /9, nullptr); //시작 지점
-                LineTo(hdc, 1280, i * 720 /9);
-            }
+            //for (int i = 0; i < 1000; i++) {
+            //    int x = rand() % 100;
+            //    int y = rand() % 100;
+            //    SetPixel(hdc, x,y,RGB(255,0,0));
+            //}
+            //for (int i = 0; i < 16; i++) {
+            //    MoveToEx(hdc, i * 1280 / 16, 0, nullptr); //시작 지점
+            //    LineTo(hdc, i* 1280 /16, 720);
+            //}                           
+            //for (int i = 0; i < 9; i++) {
+            //    MoveToEx(hdc, i, i * 720 /9, nullptr); //시작 지점
+            //    LineTo(hdc, 1280, i * 720 /9);
+            //}
             
             int targetCnt = 25;
             
             for (int i = 0; i < targetCnt; ++i) {
-                int left = 100 + (70 * i % 5);
-                int top = 100 + (70 * i / 5) ;
+                int left = 100 + (i % 5 * 70);
+                int top = 100 + (i / 5 * 70) ;
 
                 if (i / 5 % 2 == 0){
                     Rectangle(hdc, left, top,left + 50, top + 50);
@@ -221,6 +233,25 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             //EndPaint(hWnd, &ps);
         }
         break;
+    case WM_KEYDOWN:
+        switch (wParam)
+        {
+        case VK_UP:
+            int a = 0; 
+            break;
+        }
+        case 'W':
+            break;
+        break;
+    case WM_CHAR:
+    {
+        hdc = GetDC(hWnd);
+        wstr[count++] = wParam;
+        wstr[count] = NULL;
+        TextOut(hdc, 10, 10, wstr, wcslen(wstr));
+        ReleaseDC(hWnd, hdc);
+    }
+            break;
     case WM_DESTROY:
         //MessageBox(hWnd, L"X버튼이 눌렸습니다.", L"WM_DESTROY", MB_OK);
         _itoa_s(iCount,arr,10);
@@ -228,6 +259,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         PostQuitMessage(0);
         break;
     case WM_LBUTTONDBLCLK:
+        //SetDoubleClickTime();
+
         MessageBox(hWnd,L"왼쪽 마우스 더블클릭",L"WM_DESTROY", MB_OKCANCEL | MB_ICONSTOP);
         break;
     default:
@@ -238,7 +271,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         return DefWindowProc(hWnd, message, wParam, lParam);
     //return 0;
 }
-
+                   
 // 정보 대화 상자의 메시지 처리기입니다.
 INT_PTR CALLBACK About(HWND hDlg, UINT message, WPARAM wParam, LPARAM lParam)
 {
