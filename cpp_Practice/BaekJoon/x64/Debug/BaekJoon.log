@@ -1,3 +1,4 @@
-﻿  Baekjoon1406.cpp
-D:\UnityProject\CppStudy\cpp_Practice\BaekJoon\Baekjoon1406.cpp(48,28): warning C4267: '=': 'size_t'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+﻿  BaekJoon1026.cpp
+  Baekjoon1406.cpp
+  코드를 생성하고 있습니다...
   BaekJoon.vcxproj -> D:\UnityProject\CppStudy\cpp_Practice\BaekJoon\x64\Debug\BaekJoon.exe
