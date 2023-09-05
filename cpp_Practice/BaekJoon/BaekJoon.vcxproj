@@ -142,12 +142,14 @@
     <ClCompile Include="BaekJoon1026.cpp" />
     <ClCompile Include="Baekjoon10816.cpp" />
     <ClCompile Include="BaekJoon10828.cpp" />
+    <ClCompile Include="Baekjoon1158.cpp" />
     <ClCompile Include="BaekJoon1182.cpp" />
     <ClCompile Include="BaekJoon12865.cpp" />
     <ClCompile Include="Baekjoon13458.cpp" />
     <ClCompile Include="Baekjoon1406.cpp" />
     <ClCompile Include="Baekjoon14501.cpp" />
     <ClCompile Include="Baekjoon14889.cpp" />
+    <ClCompile Include="Baekjoon18352.cpp" />
     <ClCompile Include="Baekjoon1920.cpp" />
     <ClCompile Include="BaekJoon2178.cpp" />
     <ClCompile Include="Baekjoon2485.cpp" />
