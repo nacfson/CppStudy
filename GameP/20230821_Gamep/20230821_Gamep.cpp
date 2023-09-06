@@ -24,8 +24,10 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-POINT ptObjPos = { 500, 500 };
-POINT ptObjScale = { 100,100 };
+POINT ptObjPos = { 300, 300};
+POINT ptEllipsePos{ 0,0 };
+POINT ptEllipseScale = { 50,50 };
+POINT ptObjScale = { 600,600 };
 
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
@@ -156,6 +158,12 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static wchar_t wstr[10][11];
 	static int  count, yPos, xPos, line;
 	static SIZE size;
+	static RECT rectView;
+	static HPEN hPen;
+	static bool isKeyDown;
+
+
+
 
 	HDC hdc;
 
@@ -166,6 +174,8 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		yPos = 0;
 		CreateCaret(hWnd, NULL, 5, 15);
 		ShowCaret(hWnd);
+		GetClientRect(hWnd,&rectView);
+		isKeyDown = false;
 		break;
 	case WM_COMMAND:
 	{
@@ -202,7 +212,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		//AddFontResource(TEXT("IsiniScript.ttf"));
 
 
-		HPEN hPen = CreatePen(PS_DASHDOT, 3, RGB(0, 0, 255));
+		hPen = CreatePen(PS_DASHDOT, 3, RGB(0, 0, 255));
 		HBRUSH hBrush = CreateHatchBrush(HS_BDIAGONAL, RGB(0, 255, 0));
 		HPEN hDefaultPen = (HPEN)SelectObject(hdc, hPen);
 		RECT rect = { 0,0,165,720 };
@@ -256,26 +266,73 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		////Ellipse(hdc, 50, 50, 150, 150);
 		//EndPaint(hWnd, &ps);
 
-		Rectangle(hdc,
-			 ptObjPos.x - ptObjScale.x / 2
-			, ptObjPos.y - ptObjScale.y / 2
-			, ptObjPos.x + ptObjScale.x / 2
-			, ptObjPos.y + ptObjScale.y / 2
-			);
+		//Rectangle(hdc,
+		//	ptObjPos.x - ptObjScale.x / 2
+		//	, ptObjPos.y - ptObjScale.y / 2
+		//	, ptObjPos.x + ptObjScale.x / 2
+		//	, ptObjPos.y + ptObjScale.y / 2
+		//);
+
+		Rectangle(hdc, 0, 0, 600, 600);
+		HBRUSH hDefaultBrush = CreateSolidBrush(RGB(0, 0, 255));
+		HBRUSH hDefaultBrushT = CreateSolidBrush(RGB(255, 255, 255));
+
+		if (isKeyDown)
+			SelectObject(hdc, hDefaultBrush);
+		else
+			SelectObject(hdc, hDefaultBrushT);
+		Ellipse(hdc,
+			  ptEllipsePos.x - ptEllipseScale.x / 2
+			, ptEllipsePos.y - ptEllipseScale.y / 2
+			, ptEllipsePos.x + ptEllipseScale.x / 2
+			, ptEllipsePos.y + ptEllipseScale.y / 2
+		);
 		EndPaint(hWnd,&ps);
 	}
 	break;
-	case WM_KEYDOWN:
+	case WM_TIMER:
+		if (rectView.left < ptObjPos.x - ptObjScale.x / 2 + 10)
+		{
+			//isKeyDown = true;
+			ptEllipsePos.x += 10;
+		}
+		InvalidateRect(hWnd, nullptr, true);
+		break;
+	case WM_KEYUP:
+		hdc = GetDC(hWnd);
 		switch (wParam)
 		{
-
-		case VK_LEFT:
-				ptObjPos.x -= 10;
+			case VK_LEFT:
+				isKeyDown = false;
+				InvalidateRect(hWnd, nullptr, true);
 				break;
+		}
+
+		break;
+	case WM_KEYDOWN:
+		hdc = GetDC(hWnd);
+		switch (wParam)
+		{
+		case VK_LEFT:
+			//if (rectView.left < ptObjPos.x - ptObjScale.x / 2 + 10)
+			//{
+			//	isKeyDown = true;
+			//	
+			//	ptObjPos.x -= 10;
+			//}
+			break;
 		case VK_RIGHT:
 			ptObjPos.x += 10;
 			break;
+		case VK_RETURN:
+			isKeyDown = !isKeyDown;
+			if (isKeyDown)
+				SetTimer(hWnd, 1, 100, nullptr);
+			else
+				KillTimer(hWnd, 1);
+			break;
 		}
+		
 		InvalidateRect(hWnd, nullptr, true);
 
 	case WM_CHAR:
@@ -314,6 +371,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		HideCaret(hWnd);
 		DestroyCaret();
 		PostQuitMessage(0);
+		KillTimer(hWnd,1);
 		break;
 	case WM_LBUTTONDBLCLK:
 		//SetDoubleClickTime();
