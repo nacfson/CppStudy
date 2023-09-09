@@ -1,2 +1,228 @@
-﻿  Baekjoon1929.cpp
-  BaekJoon.vcxproj -> D:\C++\CppStudy\cpp_Practice\BaekJoon\x64\Debug\BaekJoon.exe
+﻿  BaekjoonPractice.cpp
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(524,37): error C2825: '_Alloc': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(704): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Normal_allocator_traits<_Alloc>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(438): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::allocator_traits<_Alloc>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(438): message : 컴파일되는 별칭 템플릿 인스턴스화 'std::_Rebind_alloc_t<_Alloc,_Ty>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int,
+              _Ty=int
+          ]
+D:\C++\CppStudy\cpp_Practice\BaekJoon\BaekjoonPractice.cpp(24): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::vector<int,int>'에 대한 참조를 확인하세요.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(524,45): error C2510: '_Alloc': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(524,1): error C2061: 구문 오류: 식별자 'value_type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(332,27): error C2825: '_Ty': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Get_pointer_type<_Alloc,void>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(332,32): error C2510: '_Ty': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(332,1): error C2061: 구문 오류: 식별자 'value_type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526,68): error C2039: 'type': 'std::_Get_pointer_type<_Alloc,void>'의 멤버가 아닙니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526): message : 'std::_Get_pointer_type<_Alloc,void>' 선언을 참조하십시오.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526,1): error C2061: 구문 오류: 식별자 'type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(344,53): error C2039: 'type': 'std::_Get_pointer_type<_Alloc,void>'의 멤버가 아닙니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526): message : 'std::_Get_pointer_type<_Alloc,void>' 선언을 참조하십시오.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(527): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Get_const_pointer_type<_Alloc,void>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(344,1): error C2061: 구문 오류: 식별자 'type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(345,29): error C2825: '_Ty': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(345,34): error C2510: '_Ty': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(345,1): error C2061: 구문 오류: 식별자 'value_type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(346,44): error C2065: '_Ptrty': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(346,29): error C2923: 'std::pointer_traits': '_Ptrty'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(346): message : '_Ptrty' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(346,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(346,75): error C2146: 구문 오류: '>'이(가) '_Valty' 식별자 앞에 없습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(358,53): error C2039: 'type': 'std::_Get_pointer_type<_Alloc,void>'의 멤버가 아닙니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526): message : 'std::_Get_pointer_type<_Alloc,void>' 선언을 참조하십시오.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(528): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Get_void_pointer_type<_Alloc,void>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(358,1): error C2061: 구문 오류: 식별자 'type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(359,44): error C2065: '_Ptrty': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(359,29): error C2923: 'std::pointer_traits': '_Ptrty'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(359): message : '_Ptrty' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(369,53): error C2039: 'type': 'std::_Get_pointer_type<_Alloc,void>'의 멤버가 아닙니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526): message : 'std::_Get_pointer_type<_Alloc,void>' 선언을 참조하십시오.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(529): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Get_const_void_pointer_type<_Alloc,void>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(369,1): error C2061: 구문 오류: 식별자 'type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(370,44): error C2065: '_Ptrty': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(370,29): error C2923: 'std::pointer_traits': '_Ptrty'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(370): message : '_Ptrty' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(380,53): error C2039: 'type': 'std::_Get_pointer_type<_Alloc,void>'의 멤버가 아닙니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(526): message : 'std::_Get_pointer_type<_Alloc,void>' 선언을 참조하십시오.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(391): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Get_difference_type<_Ty,void>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(531): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Get_size_type<_Alloc,void>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(380,1): error C2061: 구문 오류: 식별자 'type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(381,44): error C2065: '_Ptrty': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(381,29): error C2923: 'std::pointer_traits': '_Ptrty'은(는) '_Ty' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(381): message : '_Ptrty' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(381,53): error C2955: 'std::pointer_traits': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xutility(159): message : 'std::pointer_traits' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(546,9): error C3646: 'allocate': 알 수 없는 재정의 지정자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(546,26): error C2065: '_Al': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(546,18): error C2275: '_Alloc': 이 형식을 식으로 잘못 사용했습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(546,31): error C2226: 구문 오류: 예기치 않은 형식 'std::_Normal_allocator_traits<_Alloc>::size_type'입니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(546,1): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(551,9): error C3646: 'allocate': 알 수 없는 재정의 지정자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(551,26): error C2065: '_Al': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(551,18): error C2275: '_Alloc': 이 형식을 식으로 잘못 사용했습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(551,31): error C2226: 구문 오류: 예기치 않은 형식 'std::_Normal_allocator_traits<_Alloc>::size_type'입니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(551,1): error C2334: '{' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(559,54): error C2061: 구문 오류: 식별자 'pointer'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(443,66): error C2027: 정의되지 않은 형식 'std::_Replace_first_parameter<_Other,_Ty>'을(를) 사용했습니다.
+          with
+          [
+              _Other=int,
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(443): message : 'std::_Replace_first_parameter<_Other,_Ty>' 선언을 참조하십시오.
+          with
+          [
+              _Other=int,
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(438): message : 컴파일되는 클래스 템플릿 인스턴스화 'std::_Get_rebind_type<_Alloc,_Ty,void>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int,
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(727): message : 컴파일되는 별칭 템플릿 인스턴스화 'std::_Normal_allocator_traits<_Alloc>::rebind_alloc<_Ty>'에 대한 참조를 확인하세요.
+          with
+          [
+              _Alloc=int,
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(443,60): error C2061: 구문 오류: 식별자 'type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(540,69): error C2794: 'type': 직접 또는 간접 기본 클래스 'std::_Get_rebind_type<_Alloc,_Ty,void>'의 멤버가 아닙니다.
+          with
+          [
+              _Alloc=int,
+              _Ty=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(438,50): error C2938: 'std::_Normal_allocator_traits<_Alloc>::rebind_alloc': 별칭 템플릿을 특수화하지 못했습니다.
+          with
+          [
+              _Alloc=int
+          ]
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(438,50): error C2938: 'std::_Rebind_alloc_t': 별칭 템플릿을 특수화하지 못했습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(442,76): error C2825: '_Alloc': '::'가 뒤에 나오면 클래스 또는 네임스페이스여야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(442,84): error C2510: '_Alloc': '::' 왼쪽은 클래스/구조체/공용 구조체이어야 합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(442,1): error C2146: 구문 오류: '>'이(가) 'value_type' 식별자 앞에 없습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(442): error C2062: 예기치 않은 'unknown-type' 형식입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(443,1): error C2238: ';' 앞에 예기치 않은 토큰이 있습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(447,52): error C2955: 'std::allocator_traits': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(703): message : 'std::allocator_traits' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(447,52): error C2039: 'pointer': 'std::allocator_traits<_Alloc>'의 멤버가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(447,1): error C2061: 구문 오류: 식별자 'pointer'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(448,52): error C2955: 'std::allocator_traits': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(703): message : 'std::allocator_traits' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(448,52): error C2039: 'const_pointer': 'std::allocator_traits<_Alloc>'의 멤버가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(448,1): error C2061: 구문 오류: 식별자 'const_pointer'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(451,52): error C2955: 'std::allocator_traits': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(703): message : 'std::allocator_traits' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(451,52): error C2039: 'size_type': 'std::allocator_traits<_Alloc>'의 멤버가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(451,1): error C2061: 구문 오류: 식별자 'size_type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(452,52): error C2955: 'std::allocator_traits': 클래스 템플릿을(를) 사용하려면 템플릿 인수 목록이 필요합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\xmemory(703): message : 'std::allocator_traits' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(452,52): error C2039: 'difference_type': 'std::allocator_traits<_Alloc>'의 멤버가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(452,1): error C2061: 구문 오류: 식별자 'difference_type'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,30): error C2065: 'size_type': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,41): error C2065: 'difference_type': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,58): error C2065: 'pointer': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,67): error C2065: 'const_pointer': 선언되지 않은 식별자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,9): error C2923: 'std::_Vec_iter_types': 'size_type'은(는) '_Size_type' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456): message : 'size_type' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,9): error C2923: 'std::_Vec_iter_types': 'difference_type'은(는) '_Difference_type' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456): message : 'difference_type' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,9): error C2923: 'std::_Vec_iter_types': 'pointer'은(는) '_Pointer' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456): message : 'pointer' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,9): error C2923: 'std::_Vec_iter_types': 'const_pointer'은(는) '_Const_pointer' 매개 변수에 대한 올바른 템플릿 형식 인수가 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456): message : 'const_pointer' 선언을 참조하십시오.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(456,88): error C2993: 'unknown-type': 비형식 템플릿 매개 변수 '_Test'의 유효한 형식이 아닙니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(459,53): error C3203: '_Vector_val': 특수화되지 않은 클래스 템플릿은(는) 템플릿 매개 변수 '_Myvec'에 대한 템플릿 인수로 사용할 수 없습니다. 실제 형식이 필요합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(460,59): error C3203: '_Vector_val': 특수화되지 않은 클래스 템플릿은(는) 템플릿 매개 변수 '_Myvec'에 대한 템플릿 인수로 사용할 수 없습니다. 실제 형식이 필요합니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(472,1): error C4430: 형식 지정자가 없습니다. int로 가정합니다. 참고: C++에서는 기본 int를 지원하지 않습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(472,69): error C2146: 구문 오류: ')'이(가) '_Count' 식별자 앞에 없습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(472,69): error C3646: '_Count': 알 수 없는 재정의 지정자입니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(472,89): error C2143: 구문 오류: ';'이(가) '&' 앞에 없습니다.
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(472,89): error C2059: 구문 오류: '&'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(472,1): error C2059: 구문 오류: ')'
+C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Tools\MSVC\14.31.31103\include\vector(472,1): error C2334: ':' 앞에 예기치 않은 토큰이 있습니다. 명백한 함수 본문을 건너뜁니다.
+D:\C++\CppStudy\cpp_Practice\BaekJoon\BaekjoonPractice.cpp(21): fatal error C1075: '{': 일치하는 토큰을 찾을 수 없습니다.

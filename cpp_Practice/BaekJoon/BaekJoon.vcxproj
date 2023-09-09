@@ -139,6 +139,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Baekjon1966.cpp" />
+    <ClCompile Include="Baekjoon1016.cpp" />
     <ClCompile Include="BaekJoon1026.cpp" />
     <ClCompile Include="Baekjoon10816.cpp" />
     <ClCompile Include="BaekJoon10828.cpp" />
@@ -155,6 +157,7 @@
     <ClCompile Include="BaekJoon2178.cpp" />
     <ClCompile Include="Baekjoon2485.cpp" />
     <ClCompile Include="BaekJoon9935.cpp" />
+    <ClCompile Include="BaekjoonPractice.cpp" />
     <ClCompile Include="BakeJoon9095.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
