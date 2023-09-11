@@ -5,6 +5,7 @@
 #include "20230821_Gamep.h"
 #include <string>
 #include <time.h>
+#include <math.h>
 using namespace std;
 
 
@@ -25,10 +26,21 @@ LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
 POINT ptObjPos = { 300, 300};
-POINT ptEllipsePos{ 0,0 };
+POINT ptEllipsePos{ 500,500 };
 POINT ptEllipseScale = { 50,50 };
 POINT ptObjScale = { 600,600 };
+double LengthPts(int x1, int y1, int x2, int y2) {
+	return (sqrt(pow(x2 - x1, 2)) + pow(y2 - y1, 2));
+}
 
+bool InCircle(int x, int y, int mx, int my, int radius) {
+	if (LengthPts(x, y, mx, my) < radius) {
+		return true;
+	}	
+	else {
+		return false;
+	}
+}
 
 int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 	_In_opt_ HINSTANCE hPrevInstance, //가상 메모리
@@ -162,13 +174,52 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 	static HPEN hPen;
 	static bool isKeyDown;
 
-
-
+	static int x, y;
+	static int yMin, yMax, xMin, xMax;
+	static bool isClick = false;
 
 	HDC hdc;
 
 	switch (message)
 	{
+	case WM_SIZE:
+	{
+		GetClientRect(hWnd, &rectView);
+		InvalidateRect(hWnd,nullptr,false);
+		break;
+	}
+	case WM_MOUSEMOVE:
+		hdc = GetDC(hWnd);
+		x = LOWORD(lParam);
+		y = HIWORD(lParam);
+
+		if (isClick) {
+			MoveToEx(hdc, x, y, nullptr);
+
+
+			LineTo(hdc, x, y);
+			SetPixel(hdc,x,y,BLACK_BRUSH);
+		}
+		else {
+			if (InCircle(x, y, ptEllipsePos.x, ptEllipsePos.y, ptEllipseScale.x * 0.5f)) {
+				ptEllipsePos.x = x;
+				ptEllipsePos.y = y;
+			}
+		}
+		InvalidateRect(hWnd, nullptr, false);
+		ReleaseDC(hWnd,hdc);
+		break;
+	case WM_LBUTTONDOWN:
+		hdc = GetDC(hWnd);
+		isClick = true;
+		x = LOWORD(lParam);
+		y = HIWORD(lParam);
+		//InvalidateRect(hWnd, nullptr, false);
+		break;
+	case WM_LBUTTONUP:
+		isClick = false;
+		//InvalidateRect(hWnd, nullptr, false);
+		break;
 	case WM_CREATE:
 		count = line = 0;
 		yPos = 0;
@@ -237,17 +288,17 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 
 		int targetCnt = 25;
 
-		for (int i = 0; i < targetCnt; ++i) {
-			int left = 100 + (i % 5 * 70);
-			int top = 100 + (i / 5 * 70);
+		//for (int i = 0; i < targetCnt; ++i) {
+		//	int left = 100 + (i % 5 * 70);
+		//	int top = 100 + (i / 5 * 70);
 
-			if (i / 5 % 2 == 0) {
-				Rectangle(hdc, left, top, left + 50, top + 50);
-			}
-			else {
-				Ellipse(hdc, left, top, left + 50, top + 50);
-			}
-		}
+		//	if (i / 5 % 2 == 0) {
+		//		Rectangle(hdc, left, top, left + 50, top + 50);
+		//	}
+		//	else {
+		//		Ellipse(hdc, left, top, left + 50, top + 50);
+		//	}
+		//}
 
 		//// TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
 		//wstring str = L"겜프 2학기 시작";
@@ -273,7 +324,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		//	, ptObjPos.y + ptObjScale.y / 2
 		//);
 
-		Rectangle(hdc, 0, 0, 600, 600);
+		//Rectangle(hdc, 0, 0, 600, 600);
 		HBRUSH hDefaultBrush = CreateSolidBrush(RGB(0, 0, 255));
 		HBRUSH hDefaultBrushT = CreateSolidBrush(RGB(255, 255, 255));
 
@@ -287,6 +338,20 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 			, ptEllipsePos.x + ptEllipseScale.x / 2
 			, ptEllipsePos.y + ptEllipseScale.y / 2
 		);
+		wstring wstr = L"겜프는 꿀잼";
+		TextOut(hdc, rectView.right * 0.5f, rectView.bottom * 0.5f, wstr.c_str(), wstr.length());
+
+		//if (isClick) {
+		//	xMin = ptEllipsePos.x - ptEllipseScale.x * 0.5f;
+		//	xMax = ptEllipsePos.x + ptEllipseScale.x * 0.5f;
+
+		//	yMin = ptEllipsePos.y - ptEllipseScale.y * 0.5f;
+		//	yMax = ptEllipsePos.y + ptEllipseScale.y * 0.5f;
+		//	if (InCircle(x, y, ptEllipsePos.x, ptEllipsePos.y, ptEllipseScale.x * 0.5f)) {
+		//		Rectangle(hdc, xMin, yMax, xMax, yMin);
+		//		//InvalidateRect(hWnd, nullptr, false);
+		//	}
+		//}
 		EndPaint(hWnd,&ps);
 	}
 	break;
