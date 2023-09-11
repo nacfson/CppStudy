@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Baekjon1966.cpp" />
+    <ClCompile Include="Baekjoon1012.cpp" />
     <ClCompile Include="Baekjoon1016.cpp" />
     <ClCompile Include="BaekJoon1026.cpp" />
     <ClCompile Include="Baekjoon10816.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="Baekjoon1406.cpp" />
     <ClCompile Include="Baekjoon14501.cpp" />
     <ClCompile Include="Baekjoon14889.cpp" />
+    <ClCompile Include="Baekjoon1697.cpp" />
     <ClCompile Include="Baekjoon18352.cpp" />
     <ClCompile Include="Baekjoon1920.cpp" />
     <ClCompile Include="Baekjoon1929.cpp" />
