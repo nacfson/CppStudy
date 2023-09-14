@@ -1,70 +1,40 @@
-#include <iostream>
-#include <vector>
-using namespace std;
-class Tree
-{
-public:
-	int root, idx;
-	int arr[3];
-	Tree(int root, int idx)
-	{
-		this->root = root;
-		this->idx = idx;
-		for (int i = 0; i < 3; i++) {
-			arr[i] = root;
-		}
-	}
-	Tree* MakeTree()
-	{
-		arr[0] *= 2;
-		arr[1] += 1;
-		arr[2] -= 1;
-		return this;
-	}
-
-	int MatchValue(int value) {
-		for (int i = 0; i < 3; i++) {
-			if (arr[i] == value) return idx;
-		}
-		return -1;
-	}
-};
-
-int main(void) {
-	int n, m;
-	int idx = 0;
-	cin >> n >> m;
-
-	vector<Tree> tmpTrees;
-	vector<Tree> trees;
-
-	Tree tree(1, idx);
-	trees.push_back(tree);
-
-	int result;
-	int out = false;
-	while (!out) {
-		tmpTrees = trees;
-
-		for (auto t : trees) {
-			result = t.MatchValue(m);
-			if (result != -1) {
-				cout << result;
-				out = true;
-				break;
-			}
-		}
-
-		trees.clear();
-		for (auto t : tmpTrees) {
-			Tree* tmp = t.MakeTree();
-			for (int i = 0; i < 3; i++) {
-				Tree tre(tmp->arr[i], idx);
-				trees.push_back(tre);
-			}
-		}
-		tmpTrees.clear();
-		idx++;
-	}
-	return 0;
-}
+//#include <iostream>
+//#include <queue>
+//#include <map>
+//using namespace std;
+//
+//int main(void) {
+//	int n, k;
+//	cin >> n >> k;
+//
+//	queue<pair<int,int>> q;
+//	map<int, bool> visited;
+//
+//	q.push({n,0});
+//	visited[n] = true;
+//
+//	int result = 0;
+//
+//	while (!q.empty()) {
+//		int a = q.front().first;
+//		int b = q.front().second;
+//		
+//		q.pop();
+//
+//		if (a == k) {
+//			result = b;
+//			break;
+//		}
+//
+//		vector<int> nextVec = { a - 1, a + 1,a * 2 };
+//
+//		for (auto next : nextVec) {
+//			if (visited[next] == true || next > 100000) continue;
+//			visited[next] = true;
+//			q.push({ next,b + 1 });
+//		}
+//	}
+//
+//	cout << result;
+//	return 0;
+//}
