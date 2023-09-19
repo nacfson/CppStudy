@@ -161,6 +161,7 @@
     <ClCompile Include="Baekjoon1929.cpp" />
     <ClCompile Include="BaekJoon2178.cpp" />
     <ClCompile Include="Baekjoon2485.cpp" />
+    <ClCompile Include="Baekjoon2661.cpp" />
     <ClCompile Include="Baekjoon9663.cpp" />
     <ClCompile Include="BaekJoon9935.cpp" />
     <ClCompile Include="BaekjoonPractice.cpp" />
