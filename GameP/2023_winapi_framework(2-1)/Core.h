@@ -20,17 +20,21 @@
 //		SAFE_DELETE(m_pInst);
 #include "define.h"
 #include "pch.h"
+#include "Object.h"
 
 class Core
 {
 	SINGLE(Core)
 public:
 	bool Init(HWND hWnd);
+	void GameLoop();
+private:
 	void Update();
+	void Render();
 private:
 	HDC _hdc;
 	HWND _hWnd;
-	
+	Object _obj;
 //private:
 //	Core();
 //	~Core();

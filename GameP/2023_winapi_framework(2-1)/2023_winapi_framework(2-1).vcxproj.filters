@@ -64,6 +64,9 @@
     <ClInclude Include="BaseWindow.h">
       <Filter>Engine\02. Core</Filter>
     </ClInclude>
+    <ClInclude Include="Vec2.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2023_winapi_framework(2-1).rc">
@@ -96,6 +99,9 @@
     </ClCompile>
     <ClCompile Include="BaseWindow.cpp">
       <Filter>Engine\02. Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Vec2.cpp">
+      <Filter>Engine\01. Header</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

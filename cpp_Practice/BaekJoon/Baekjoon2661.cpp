@@ -1,6 +1,7 @@
 #include <iostream>
 using namespace std;
 
+
 int main(void) {
 	int n;
 	cin >> n;
@@ -9,6 +10,6 @@ int main(void) {
 
 
 
-
+	
 	return 0;
 }
