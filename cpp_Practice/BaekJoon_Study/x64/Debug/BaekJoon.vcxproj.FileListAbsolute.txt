@@ -1,2 +1,0 @@
-D:\C++\CppStudy\cpp_Practice\BaekJoon\x64\Debug\BaekJoon.exe
-D:\UnityProject\CppStudy\cpp_Practice\BaekJoon\x64\Debug\BaekJoon.exe
