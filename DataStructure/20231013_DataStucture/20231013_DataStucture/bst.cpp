@@ -32,7 +32,6 @@ void BST::InsertRecur(node* root, node* node)
     else if (GetData(node) < GetData(root)) {
         if (GetLeftSubTree(root) == NULL)
             MakeLeftSubTree(root, node);
-            
         else
             InsertRecur(root->left, node);// ºóÄ­Ã¤¿ì±â
     }
