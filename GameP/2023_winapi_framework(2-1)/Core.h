@@ -26,7 +26,7 @@ class Core
 {
 	SINGLE(Core)
 public:
-	bool Init(HWND hWnd);
+	bool Init(HWND hWnd,POINT pResolution);
 	void GameLoop();
 private:
 	void Update();
@@ -34,6 +34,7 @@ private:
 private:
 	HDC _hdc;
 	HWND _hWnd;
+	POINT _pResolution;
 	Object _obj;
 //private:
 //	Core();

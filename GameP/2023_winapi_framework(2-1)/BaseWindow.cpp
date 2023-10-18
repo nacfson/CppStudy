@@ -70,7 +70,7 @@ int BaseWindow::Run(HINSTANCE hIsntance, int nCmdShow)
     this->WindowUpdate();
 
     //Core Init()
-    if (Core::GetInst()->Init(_hWnd)) {
+    if (Core::GetInst()->Init(_hWnd,_windowResolution)) {
         MessageBox(_hWnd, L"Core 객체 초기화 실패",L"FAIL",MB_OK);
     }
 

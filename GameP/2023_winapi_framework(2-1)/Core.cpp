@@ -1,12 +1,14 @@
 #include "pch.h"
 #include "Core.h"
 
-bool Core::Init(HWND hWnd)
+bool Core::Init(HWND hWnd,POINT pResolution)
 {
 	this->_hWnd = hWnd;
 	_hdc = GetDC(hWnd);
-	_obj.ptPos = { 100,100 };
-	_obj.ptScale = { 100,100 };
+	_pResolution = pResolution;
+
+	_obj.SetPos(Vec2({_pResolution.x/2,_pResolution.y/2}));
+	_obj.SetScale(Vec2(100, 100));
 	return true;
 }
 
@@ -18,15 +20,18 @@ void Core::GameLoop()
 
 void Core::Update()
 {
+	Vec2 pos = _obj.GetPos();
 	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
-		_obj.ptPos.x -= 1;
+		pos.x -= 0.01f;
 	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
-	{
-		_obj.ptPos.x += 1;
-	}
+		pos.x += -0.01f;
+	_obj.SetPos(pos);
 }
 
 void Core::Render()
 {
-	RECT_RENDER(_obj.ptPos.x, _obj.ptPos.y, _obj.ptScale.x, _obj.ptScale.y, _hdc);
+	Vec2 pos = _obj.GetPos();
+	Vec2 scale = _obj.GetScale();
+
+	RECT_RENDER(pos.x, pos.y, scale.x, scale.y, _hdc);
 }
