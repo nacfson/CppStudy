@@ -28,12 +28,20 @@ class Core
 public:
 	bool Init(HWND hWnd,POINT pResolution);
 	void GameLoop();
+	const HWND& GetHwnd() const { return _hWnd; }
 private:
 	void Update();
 	void Render();
+public:
+	void Release();
 private:
-	HDC _hdc;
-	HWND _hWnd;
+	HWND _hWnd; //메인 윈도우 핸들
+	HDC _hDC;  //메인 윈도우 DC
+	HDC _backDC;  //백 버퍼 DC
+	HBITMAP _backBit; //백 버퍼용 비트맵
+
+
+
 	POINT _pResolution;
 	Object _obj;
 //private:

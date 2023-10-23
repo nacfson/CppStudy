@@ -109,5 +109,6 @@ int BaseWindow::MessageLoop()
             Core::GetInst()->GameLoop();
         }
     }
+    Core::GetInst()->Release();
 	return 0;
 }

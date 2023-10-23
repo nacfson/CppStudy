@@ -11,25 +11,25 @@ Vec2::~Vec2()
 }
 
 Vec2::Vec2(float x, float y)
-	:_x(x)
-	, _y(y)
+	:x(x)
+	, y(y)
 {
 }
 
 Vec2::Vec2(int x, int y)
-	:_x((float)x)
-	,_y((float)y)
+	:x((float)x)
+	,y((float)y)
 {
 }
 
 Vec2::Vec2(POINT pt)
-	:_x((float)pt.x)
-	,_y((float)pt.y)
+	:x((float)pt.x)
+	,y((float)pt.y)
 {
 }
 
 Vec2::Vec2(const Vec2& v)
-	:_x(v._x)
-	,_y(v._y)
+	:x(v.x)
+	,y(v.y)
 {
 }
