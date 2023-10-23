@@ -3,7 +3,7 @@ class Object
 {
 public :
 	Object();
-	~Object();
+	virtual ~Object();
 public:
 	void SetPos(Vec2 pos) { ptPos = pos; }
 public:

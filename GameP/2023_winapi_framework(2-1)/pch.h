@@ -6,6 +6,7 @@
 #include <map>
 #include <string>
 #include <math.h>
+#include <memory>
 #include <algorithm>
 #include "define.h"
 #include "Vec2.h"

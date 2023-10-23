@@ -12,13 +12,13 @@ bool Core::Init(HWND hWnd,POINT pResolution)
 	_pResolution = pResolution;
 
 
-	//´õºí ¹öÆÛ¸µ
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¸ï¿½
 	_hDC = GetDC(hWnd);
 
-	//1. ¹öÆÛ °ø°£À» »ý¼º
+	//1. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	_backBit = CreateCompatibleBitmap(_hDC,_pResolution.x,_pResolution.y);
 	_backDC = CreateCompatibleDC(_hDC);
-	//2. ¿¬°á
+	//2. ï¿½ï¿½ï¿½ï¿½
 	SelectObject(_backDC, _backBit);
 
 	_obj.SetPos(Vec2({_pResolution.x/2,_pResolution.y/2}));
@@ -54,7 +54,7 @@ void Core::Update()
 
 void Core::Render()
 {
-	//È­¸éÀ» ±ú²ýÇÏ°Ô Áö¿ì°í ½ÍÀ½
+	//È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//Rectangle(_backDC, -1,-1,_pResolution.x + 1, _pResolution.y + 1);
 	PatBlt(_backDC,0,0,_pResolution.x,_pResolution.y,WHITENESS);
 
@@ -67,9 +67,9 @@ void Core::Render()
 	POINT mousePos = KeyMgr::GetInst()->GetMousePos();
 
 
-	//¸ÞÀÎ À©µµ¿ì¿¡ ¿Å°Ü¾ß ÇÑ´Ù.
-	//3. ¿Å±ä´Ù. -> Bitblt,stretchBlt,transblt,plgblt
-	BitBlt(_hDC,0,0,_pResolution.x,_pResolution.y,_backDC,0,0,SRCCOPY); //SRCCOPY °í¼Óº¹»ç
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ ï¿½Å°Ü¾ï¿½ ï¿½Ñ´ï¿½.
+	//3. ï¿½Å±ï¿½ï¿½. -> Bitblt,stretchBlt,transblt,plgblt
+	BitBlt(_hDC,0,0,_pResolution.x,_pResolution.y,_backDC,0,0,SRCCOPY); //SRCCOPY ï¿½ï¿½Óºï¿½ï¿½ï¿½
 
 
 }
