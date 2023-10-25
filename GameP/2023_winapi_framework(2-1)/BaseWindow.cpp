@@ -2,19 +2,30 @@
 #include "BaseWindow.h"
 #include "Resource.h"
 #include "Core.h"
-
-BaseWindow::BaseWindow() {}
-
-BaseWindow::BaseWindow(POINT resolution)
+BaseWindow::BaseWindow(POINT _ptResolution)
+    : m_hInst(0)
+    , m_hWnd(0)
+    , m_ptResolution(_ptResolution)
 {
-    _hInstance = 0;
-    _hWnd = 0;
-    _windowResolution = resolution;
 }
 
 BaseWindow::~BaseWindow()
 {
+}
 
+int BaseWindow::Run(HINSTANCE _hInst, int _nCmdShow)
+{
+    m_hInst = _hInst;
+    this->MyRegisterClass();
+    this->WindowCreate();
+    this->WindowShow(_nCmdShow);
+    this->WindowUpdate();
+    // Core Init()
+    if (!Core::GetInst()->Init(m_hWnd, m_ptResolution))
+    {
+        MessageBox(m_hWnd, L"Core ï¿½ï¿½Ã¼ ï¿½Ê±ï¿½È­ ï¿½ï¿½ï¿½ï¿½", L"FAIL", MB_OK);
+    }
+    return MessageLoop();
 }
 
 ATOM BaseWindow::MyRegisterClass()
@@ -22,16 +33,16 @@ ATOM BaseWindow::MyRegisterClass()
     WNDCLASSEXW wcex;
 
     wcex.cbSize = sizeof(WNDCLASSEX);
-
     wcex.style = CS_HREDRAW | CS_VREDRAW;
     wcex.lpfnWndProc = BaseWindow::WndProc;
     wcex.cbClsExtra = 0;
     wcex.cbWndExtra = 0;
-    wcex.hInstance = _hInstance;
-    wcex.hIcon = LoadIcon(_hInstance, MAKEINTRESOURCE(IDI_MY2023WINAPIFRAMEWORK21));
+    wcex.hInstance = m_hInst;
+    wcex.hIcon = LoadIcon(m_hInst, MAKEINTRESOURCE(IDI_MY2023WINAPIFRAMEWORK21));
     wcex.hCursor = LoadCursor(nullptr, IDC_ARROW);
     wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
-    wcex.lpszMenuName = MAKEINTRESOURCEW(IDC_MY2023WINAPIFRAMEWORK21);
+    wcex.lpszMenuName = nullptr;
+    wcex.lpszClassName = WINDOW_CLASS_NAME;
     wcex.hIconSm = LoadIcon(wcex.hInstance, MAKEINTRESOURCE(IDI_SMALL));
 
     return RegisterClassExW(&wcex);
@@ -39,53 +50,35 @@ ATOM BaseWindow::MyRegisterClass()
 
 void BaseWindow::WindowCreate()
 {
-    int winPosX = GetSystemMetrics(SM_CXSCREEN) * 0.5f - _windowResolution.x * 0.5f;
-    int winPosY =  GetSystemMetrics(SM_CYSCREEN) * 0.5f - _windowResolution.y * 0.5f;
-    
-    HWND hWnd = CreateWindowW(WINDOW_CLASS_NAME, L"ÇüÁÖ", WS_OVERLAPPEDWINDOW,
-        CW_USEDEFAULT, _windowResolution.x, _windowResolution.y,0, nullptr, nullptr, this->_hInstance, nullptr);
+    int iWinposx = GetSystemMetrics(SM_CXSCREEN) / 2 - m_ptResolution.x / 2;
+    int iWinposy = GetSystemMetrics(SM_CYSCREEN) / 2 - m_ptResolution.y / 2;
 
-    RECT rect = { winPosX,winPosY,winPosX + _windowResolution.x,winPosY + _windowResolution.y };
-    AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-    MoveWindow(hWnd, winPosX, winPosY, rect.right - rect.left, rect.bottom - rect.top, true);
+    m_hWnd = CreateWindowW(WINDOW_CLASS_NAME, L"2-1ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ó¿ï¿½Å©", WS_OVERLAPPEDWINDOW,
+        iWinposx, iWinposy, m_ptResolution.x, m_ptResolution.y, nullptr, nullptr, m_hInst, nullptr);
+    RECT rt = {iWinposx, iWinposy, iWinposx + m_ptResolution.x, iWinposy + m_ptResolution.y };
+    AdjustWindowRect(&rt, WS_OVERLAPPEDWINDOW, false);
+    MoveWindow(m_hWnd, iWinposx, iWinposy, rt.right - rt.left, rt.bottom - rt.top, true);
 }
 
-void BaseWindow::WindowShow(int nCmdShow)
+void BaseWindow::WindowShow(int _nCmdShow)
 {
-    ShowWindow(_hWnd, nCmdShow);
+    ShowWindow(m_hWnd, _nCmdShow);
 }
 
 void BaseWindow::WindowUpdate()
 {
-    UpdateWindow(_hWnd);
+    UpdateWindow(m_hWnd);
 }
 
-int BaseWindow::Run(HINSTANCE hIsntance, int nCmdShow)
+LRESULT BaseWindow::WndProc(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam)
 {
-    this->_hInstance = _hInstance;
-
-    this->MyRegisterClass();
-    this->WindowCreate();
-    this->WindowShow(nCmdShow);
-    this->WindowUpdate();
-
-    //Core Init()
-    if (Core::GetInst()->Init(_hWnd,_windowResolution)) {
-        MessageBox(_hWnd, L"Core °´Ã¼ ÃÊ±âÈ­ ½ÇÆĞ",L"FAIL",MB_OK);
-    }
-
-    return MessageLoop();
-}
-
-LRESULT BaseWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
-{
-    switch (message)
+    switch (_message)
     {
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
     default:
-        return DefWindowProc(hWnd, message, wParam, lParam);
+        return DefWindowProc(_hWnd, _message, _wParam, _lParam);
     }
     return 0;
 }
@@ -93,10 +86,10 @@ LRESULT BaseWindow::WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 int BaseWindow::MessageLoop()
 {
     MSG msg;
-    memset(&msg,0,sizeof(&msg));
-
+    memset(&msg, 0, sizeof(&msg));
     while (true)
     {
+        // ï¿½ï¿½ï¿½ï¿½? ï¿½Ş½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
         {
             if (msg.message == WM_QUIT)
@@ -106,9 +99,11 @@ int BaseWindow::MessageLoop()
         }
         else
         {
+            // ï¿½Ş½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê´ï¿½ ï¿½ï¿½Îºï¿½ï¿½ï¿½ ï¿½Ã°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½!
             Core::GetInst()->GameLoop();
         }
     }
     Core::GetInst()->Release();
-	return 0;
+
+    return (int)msg.wParam;
 }

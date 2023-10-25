@@ -2,23 +2,18 @@
 class BaseWindow
 {
 public:
-	BaseWindow();
-	BaseWindow(POINT resolution);
+	BaseWindow(POINT _ptResolution);
 	~BaseWindow();
+	int			    Run(HINSTANCE _hInst, int _nCmdShow);
 	ATOM                MyRegisterClass();
-	void				WindowCreate();
-	void				WindowShow(int nCmdShow);
+	void			    WindowCreate();
+	void				WindowShow(int _nCmdShow);
 	void				WindowUpdate();
-	int					Run(HINSTANCE hIsntance,int nCmdShow);
-	static LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
+	static LRESULT CALLBACK WndProc(HWND _hWnd, UINT _message, WPARAM _wParam, LPARAM _lParam);
 	int					MessageLoop();
-
 private:
-	HWND		_hWnd;
-	HINSTANCE	_hInstance;
-	
-	POINT _windowResolution;
-
-
+	HWND		m_hWnd;
+	HINSTANCE	m_hInst;
+	POINT		m_ptResolution;
 };
 

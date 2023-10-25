@@ -26,8 +26,20 @@
     <Filter Include="Engine\03. Manager\TimeMgr">
       <UniqueIdentifier>{093a00c5-87ab-4751-9367-b04f239e660b}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Engine\Object">
-      <UniqueIdentifier>{c1def2d4-33da-4d6e-8410-e778808f504a}</UniqueIdentifier>
+    <Filter Include="Engine\04. Objet">
+      <UniqueIdentifier>{408fd213-0fa0-46c3-b35f-4e3ef67376fc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Scene">
+      <UniqueIdentifier>{a746d6dc-a4e2-472f-98ec-2dbae5106860}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\05. Scene\MainScene">
+      <UniqueIdentifier>{69adcfcb-b735-4ac6-bc6b-214927004769}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\03. Manager\SceneMgr">
+      <UniqueIdentifier>{f1cc60c9-82cc-4d59-a740-ae74967d8318}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Engine\04. Objet\MainObject">
+      <UniqueIdentifier>{a3cdfdf3-96e4-4dd9-9f6e-7b57dad450f2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -59,7 +71,7 @@
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
     <ClInclude Include="Object.h">
-      <Filter>Engine\Object</Filter>
+      <Filter>Engine\04. Objet</Filter>
     </ClInclude>
     <ClInclude Include="BaseWindow.h">
       <Filter>Engine\02. Core</Filter>
@@ -67,9 +79,28 @@
     <ClInclude Include="Vec2.h">
       <Filter>Engine\01. Header</Filter>
     </ClInclude>
-    <ClInclude Include="Scene.h" />
-    <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="Start_Scene.h" />
+    <ClInclude Include="enums.h">
+      <Filter>Engine\01. Header</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMgr.h">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClInclude>
+    <ClInclude Include="Start_Scene.h">
+      <Filter>Engine\05. Scene\MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Game_Scene.h">
+      <Filter>Engine\05. Scene\MainScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene.h">
+      <Filter>Engine\05. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Engine\04. Objet\MainObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Engine\04. Objet\MainObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Bullet.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="2023_winapi_framework(2-1).rc">
@@ -98,7 +129,7 @@
       <Filter>Engine\03. Manager\TimeMgr</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Engine\Object</Filter>
+      <Filter>Engine\04. Objet</Filter>
     </ClCompile>
     <ClCompile Include="BaseWindow.cpp">
       <Filter>Engine\02. Core</Filter>
@@ -106,8 +137,24 @@
     <ClCompile Include="Vec2.cpp">
       <Filter>Engine\01. Header</Filter>
     </ClCompile>
-    <ClCompile Include="Scene.cpp" />
-    <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="Start_Scene.cpp" />
+    <ClCompile Include="Scene.cpp">
+      <Filter>Engine\05. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMgr.cpp">
+      <Filter>Engine\03. Manager\SceneMgr</Filter>
+    </ClCompile>
+    <ClCompile Include="Start_Scene.cpp">
+      <Filter>Engine\05. Scene\MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Game_Scene.cpp">
+      <Filter>Engine\05. Scene\MainScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Engine\04. Objet\MainObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Engine\04. Objet\MainObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Bullet.cpp" />
   </ItemGroup>
 </Project>

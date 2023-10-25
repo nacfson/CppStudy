@@ -1,5 +1,4 @@
 #pragma once
-
 #include "define.h"
 class TimeMgr
 {
@@ -8,19 +7,17 @@ public:
 	void Init();
 	void Update();
 public:
-	const float& GetDt() { return _deltaTime; }
+	const float& GetDT() { return m_dT; }
 private:
-	// DT(Delta time) : 1프레임당 경과 시간
+	// DT(Delta time): 1프레임당 시간
+	float m_dT;
+	LARGE_INTEGER m_llPrevCount;
+	LARGE_INTEGER m_llCurCount;
+	LARGE_INTEGER m_llFrequency;
 
-	//FPS(Frame Per Second) : 1초당 몇 프레임
-	float _deltaTime;
-
-	LARGE_INTEGER _prevCount;
-	LARGE_INTEGER _curCount;
-	LARGE_INTEGER _frequency;
-
-	UINT _frameCount; //지금 몇 번 호출되었는가
-	float _frameTime; //시간 누적(1초모으기용)
-	UINT _fps; //내가 원하는 fps
+	// FPS(Frame per second): 1초당 몇 프레임
+	UINT m_frameCount; // 지금 몇번 호출되었는지
+	float m_accFrameTime; // 시간 누적(1초모으기용)
+	UINT m_fps;	// 내가 원하는 FPS
 };
 

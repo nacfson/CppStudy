@@ -1,19 +1,22 @@
 #pragma once
 class Object
 {
-public :
+public:
 	Object();
 	virtual ~Object();
+public: // 위치, 크기
+	//POINT m_ptPos;
+	//POINT m_ptScale;
 public:
-	void SetPos(Vec2 pos) { ptPos = pos; }
+	virtual void Update();
+	virtual void Render(HDC _dc);
 public:
-	void SetScale(Vec2 scale) { ptScale = scale; }
-public:
-	const Vec2& GetPos() const { return ptPos; }
-public:
-	const Vec2& GetScale() const { return ptScale; }
-public :
-	Vec2 ptPos;
-	Vec2 ptScale;
+	void SetPos(Vec2 _vPos) { m_vPos = _vPos; }
+	void SetScale(Vec2 _vScale) { m_vScale = _vScale; }
+	const Vec2& GetPos() const { return m_vPos; }
+	const Vec2& GetScale() const { return m_vScale; }
+private:
+	Vec2 m_vPos;
+	Vec2 m_vScale;
 };
 

@@ -2,84 +2,92 @@
 #include "Core.h"
 #include "TimeMgr.h"
 #include "KeyMgr.h"
-
-bool Core::Init(HWND hWnd,POINT pResolution)
+#include "SceneMgr.h"
+bool Core::Init(HWND _hWnd, POINT _ptResolution)
 {
-	this->_hWnd = hWnd;
-	_backBit = 0;
-	_backDC = 0;
+	m_hWnd =_hWnd;
+	m_hbackbit = 0;
+	m_hbackDC = 0;
+	m_ptResolution = _ptResolution;
 
-	_pResolution = pResolution;
+	// ´õºí ¹öÆÛ¸µ.
+	m_hDC = GetDC(m_hWnd);
+	// 1. ¹öÆÛ °ø°£À» »ý¼º
+	m_hbackbit = CreateCompatibleBitmap(m_hDC, m_ptResolution.x, m_ptResolution.y);
+	m_hbackDC = CreateCompatibleDC(m_hDC);
+	// 2. ¿¬°á
+	SelectObject(m_hbackDC, m_hbackbit);
 
+	/*m_obj.SetPos(Vec2({ m_ptResolution.x / 2, m_ptResolution.y / 2 }));
+	m_obj.SetScale(Vec2(100,100));*/
 
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û¸ï¿½
-	_hDC = GetDC(hWnd);
-
-	//1. ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	_backBit = CreateCompatibleBitmap(_hDC,_pResolution.x,_pResolution.y);
-	_backDC = CreateCompatibleDC(_hDC);
-	//2. ï¿½ï¿½ï¿½ï¿½
-	SelectObject(_backDC, _backBit);
-
-	_obj.SetPos(Vec2({_pResolution.x/2,_pResolution.y/2}));
-	_obj.SetScale(Vec2(100, 100));
-
+	// === Manager Init() ===
 	TimeMgr::GetInst()->Init();
 	KeyMgr::GetInst()->Init();
+	SceneMgr::GetInst()->Init();
 	return true;
-}
-
-void Core::GameLoop()
-{
-	Update();
-	Render();
 }
 
 void Core::Update()
 {
 	TimeMgr::GetInst()->Update();
 	KeyMgr::GetInst()->Update();
-
-
-
-	Vec2 pos = _obj.GetPos();
-	if(KEY_UP(KEY_TYPE::LEFT))
-		pos.x -= 100.0f * DELTATIME;
-	if (KEY_UP(KEY_TYPE::RIGHT))
-		pos.x += -100.0f * DELTATIME;
-	
-	_obj.SetPos(pos);
+	SceneMgr::GetInst()->Update();
+//	Vec2 vPos = m_obj.GetPos();
+////	if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+////	if (KeyMgr::GetInst()->GetKey(KEY_TYPE::LEFT) == KEY_STATE::UP)
+//	if(KEY_UP(KEY_TYPE::LEFT))
+//		vPos.x -= 100.f;// *fDT; // DT
+//	if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+//		vPos.x += 100.f * fDT;
+//	m_obj.SetPos(vPos);
 }
-
 
 void Core::Render()
 {
-	//È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-	//Rectangle(_backDC, -1,-1,_pResolution.x + 1, _pResolution.y + 1);
-	PatBlt(_backDC,0,0,_pResolution.x,_pResolution.y,WHITENESS);
+	// È­¸éÀ» ±ú²ýÇÏ°Ô Áö¿ì°í ½ÍÀº°Å¾ß.
+	//Rectangle(m_hbackDC, -1, -1, m_ptResolution.x + 1, m_ptResolution.y + 1);
+	PatBlt(m_hbackDC, 0,0, m_ptResolution.x, m_ptResolution.y, WHITENESS);
+	SceneMgr::GetInst()->Render(m_hbackDC);
+
+	//Vec2 vPos = m_obj.GetPos();
+	//Vec2 vScale = m_obj.GetScale();
+	//RECT_RENDER(vPos.x, vPos.y, vScale.x, vScale.y, m_hbackDC);
 
 
-	Vec2 pos = _obj.GetPos();
-	Vec2 scale = _obj.GetScale();
+	POINT mousepos = KeyMgr::GetInst()->GetMousepos();
+	static wchar_t mousebuf[100] = {};
+	swprintf_s(mousebuf, L"Mouse: x :%d, y :%d",mousepos.x, mousepos.y);
+	TextOut(m_hbackDC, 10, 10, mousebuf, wcslen(mousebuf));
+	// ¿ì¸® ¸ÞÀÎ À©µµ¿ì¿¡ ¿Å°Ü¾ß°ÚÁö?
+	// 3. ¿Å±ä´Ù. -> bitblt, stretchblt, trans~, plgblt
+	BitBlt(m_hDC, 0,0, m_ptResolution.x, m_ptResolution.y, m_hbackDC, 0,0, SRCCOPY);
 
-	RECT_RENDER(pos.x, pos.y, scale.x, scale.y, _hDC);
+	/*Rectangle(m_hDC
+		, m_obj.m_ptPos.x - m_obj.m_ptScale.x /2
+		, 10
+		, 110
+		, 110);*/
+}
 
-	POINT mousePos = KeyMgr::GetInst()->GetMousePos();
-
-
-	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ì¿¡ ï¿½Å°Ü¾ï¿½ ï¿½Ñ´ï¿½.
-	//3. ï¿½Å±ï¿½ï¿½. -> Bitblt,stretchBlt,transblt,plgblt
-	BitBlt(_hDC,0,0,_pResolution.x,_pResolution.y,_backDC,0,0,SRCCOPY); //SRCCOPY ï¿½ï¿½Óºï¿½ï¿½ï¿½
-
-
+void Core::GameLoop()
+{
+	//static int count = 0;
+	//++count;
+	//static int prev = GetTickCount64();
+	//int cur = GetTickCount64();
+	//if (cur - prev > 1000)
+	//{
+	//	prev = cur;
+	//	count = 0;
+	//}
+	Update();
+	Render();
 }
 
 void Core::Release()
 {
-	ReleaseDC(_hWnd, _hDC);
-	DeleteDC(_backDC);
-	DeleteObject(_backBit);
-
-
-
+	ReleaseDC(m_hWnd, m_hDC);
+	DeleteDC(m_hbackDC);
+	DeleteObject(m_hbackbit);
 }

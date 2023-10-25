@@ -19,32 +19,31 @@
 //	{
 //		SAFE_DELETE(m_pInst);
 #include "define.h"
-#include "pch.h"
-#include "Object.h"
-
+//#include "Object.h"
 class Core
 {
 	SINGLE(Core)
 public:
-	bool Init(HWND hWnd,POINT pResolution);
+	bool Init(HWND _hWnd, POINT _ptResolution);
 	void GameLoop();
-	const HWND& GetHwnd() const { return _hWnd; }
+	void Release();
+public:
+	const HWND& GetHwnd() const { return m_hWnd; }
+	const POINT& GetResolution() const { return m_ptResolution; }
 private:
 	void Update();
 	void Render();
-public:
-	void Release();
 private:
-	HWND _hWnd; //���� ������ �ڵ�
-	HDC _hDC;  //���� ������ DC
-	HDC _backDC;  //�� ���� DC
-	HBITMAP _backBit; //�� ���ۿ� ��Ʈ��
+	HWND	m_hWnd; // ���� ������ �ڵ�
+	HDC		m_hDC;	 // ���� ������ DC
+	// ������۸���
+	HDC		m_hbackDC; // �� ���� DC
+	HBITMAP m_hbackbit; // �� ���ۿ� ��Ʈ��
+
+	POINT m_ptResolution;
 
 
-
-	POINT _pResolution;
-	Object _obj;
-	//private:
+//private:
 //	Core();
 //	~Core();
 //public:
